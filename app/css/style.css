@@ -1,0 +1,413 @@
+/*
+Краткое описание описанных тут классов.
+.font-resp-style( ..{breakpoint}-sz.. ) - адаптивные шрифты для всех широт экрана
+    Производные : .h1-resp-style , .h3-resp-style;
+.rounded(@r) - округляет углы - радиус в процентах желательно.
+.transition(duration_animation; time_before_animation; animate_function);
+.text{aligment(r,c,l)}-{breakpoint} - выравнивает по нужному краю текст  и для определённых широт экрана.
+.unselectable() - делает элемент неспособным к выделеню текста внутри.
+.outlineless() - Убираем обводку при нажатии или выделении элемента
+.button (@r:27px; @button-height;)- минимальный шаблон для кнопки.
+.ul (@img-path; @marker-side:20px; @li-margin-bottom:0px; @marker-left: 0px; @marker-top) - шаблон для адаптивного списка
+    Также стоит учитывать, что, если элементы списка будут располагаться по середине (text-align: center;) то казаться будет что он
+    слегка сдвинуть в левый бок, дело в том, что маркер имеет абсолютное позиционирование, поэтому ширины как бы не имеет для других элементов.
+    Чтобы испаравить ситуацию нужно .li-content добавить свойство left: @marker-side/2;
+.horizontal-ul - Список, который располагается по горизонтали(не миксина)
+.transition-property(@property-name) - задаёт кросбраузерно свойство за изменением которого нужно следить и при изменении которого нужно произвести анимацию(обычно идёт в связке с transition).
+    ВНИМАНИЕ при использовании этой миксины на одну строку выше этой mixin'ы @property-name: background-color; в противном случае будет вылезать ошибка @property-name undefined, я так и не нашёл причину этой проблемы.
+*/
+.textr {
+  text-align: right;
+}
+.textr-none {
+  text-align: inherit;
+}
+@media (min-width: 576px) {
+  .textr-sm {
+    text-align: right;
+  }
+  .textr-sm-none {
+    text-align: inherit;
+  }
+}
+@media (min-width: 768px) {
+  .textr-md {
+    text-align: right;
+  }
+  .textr-md-none {
+    text-align: inherit;
+  }
+}
+@media (min-width: 992px) {
+  .textr-lg {
+    text-align: right;
+  }
+  .textr-lg-none {
+    text-align: inherit;
+  }
+}
+@media (min-width: 1200px) {
+  .textr-xl {
+    text-align: right;
+  }
+  .textr-xl-none {
+    text-align: inherit;
+  }
+}
+.textc {
+  text-align: center;
+}
+.textc-none {
+  text-align: inherit;
+}
+@media (min-width: 576px) {
+  .textc-sm {
+    text-align: center;
+  }
+  .textc-sm-none {
+    text-align: inherit;
+  }
+}
+@media (min-width: 768px) {
+  .textc-md {
+    text-align: center;
+  }
+  .textc-md-none {
+    text-align: inherit;
+  }
+}
+@media (min-width: 992px) {
+  .textc-lg {
+    text-align: center;
+  }
+  .textc-lg-none {
+    text-align: inherit;
+  }
+}
+@media (min-width: 1200px) {
+  .textc-xl {
+    text-align: center;
+  }
+  .textc-xl-none {
+    text-align: inherit;
+  }
+}
+.textl {
+  text-align: left;
+}
+.textl-none {
+  text-align: inherit;
+}
+@media (min-width: 576px) {
+  .textl-sm {
+    text-align: left;
+  }
+  .textl-sm-none {
+    text-align: inherit;
+  }
+}
+@media (min-width: 768px) {
+  .textl-md {
+    text-align: left;
+  }
+  .textl-md-none {
+    text-align: inherit;
+  }
+}
+@media (min-width: 992px) {
+  .textl-lg {
+    text-align: left;
+  }
+  .textl-lg-none {
+    text-align: inherit;
+  }
+}
+@media (min-width: 1200px) {
+  .textl-xl {
+    text-align: left;
+  }
+  .textl-xl-none {
+    text-align: inherit;
+  }
+}
+.unselectable {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+      user-select: none;
+}
+.outlineless {
+  outline: none;
+}
+.horizontal-ul li {
+  list-style: none;
+  display: inline-block;
+}
+a.my-anchor {
+  text-decoration: none;
+  color: inherit;
+}
+a.my-anchor:hover {
+  text-decoration: none;
+  color: inherit;
+}
+a.my-anchor:active {
+  text-decoration: none;
+  color: inherit;
+}
+@font-face {
+  font-family: 'coolvetica';
+  src: url('../fonts/coolvetica_rg-webfont.woff2') format('woff2'), url('../fonts/coolvetica_rg-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'trueno';
+  src: url('../fonts/trueno.bd-webfont.woff2') format('woff2'), url('../fonts/trueno.bd-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+.container-fluid h1,
+.container h1 {
+  font-family: roboto-thin;
+  text-align: center;
+}
+@media (max-width: 575px) {
+  .container-fluid h1,
+  .container h1 {
+    font-size: 1.6rem;
+  }
+}
+@media (min-width: 576px) and (max-width: 767px) {
+  .container-fluid h1,
+  .container h1 {
+    font-size: 1.1rem;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .container-fluid h1,
+  .container h1 {
+    font-size: 2rem;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .container-fluid h1,
+  .container h1 {
+    font-size: 2.3rem;
+  }
+}
+@media (min-width: 1200px) and (max-width: 1699px) {
+  .container-fluid h1,
+  .container h1 {
+    font-size: 2.3rem;
+  }
+}
+@media (min-width: 1700px) {
+  .container-fluid h1,
+  .container h1 {
+    font-size: 60px;
+  }
+}
+.container-fluid h3,
+.container h3 {
+  font-family: Roboto;
+  text-align: center;
+}
+@media (max-width: 575px) {
+  .container-fluid h3,
+  .container h3 {
+    font-size: 1.3rem;
+  }
+}
+@media (min-width: 576px) and (max-width: 767px) {
+  .container-fluid h3,
+  .container h3 {
+    font-size: 1.1rem;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .container-fluid h3,
+  .container h3 {
+    font-size: 1.7rem;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .container-fluid h3,
+  .container h3 {
+    font-size: 1.7rem;
+  }
+}
+@media (min-width: 1200px) and (max-width: 1699px) {
+  .container-fluid h3,
+  .container h3 {
+    font-size: 36px;
+  }
+}
+@media (min-width: 1700px) {
+  .container-fluid h3,
+  .container h3 {
+    font-size: 36px;
+  }
+}
+.container-fluid h4,
+.container h4 {
+  font-family: Roboto;
+  text-align: center;
+}
+@media (max-width: 575px) {
+  .container-fluid h4,
+  .container h4 {
+    font-size: 1.2rem;
+  }
+}
+@media (min-width: 576px) and (max-width: 767px) {
+  .container-fluid h4,
+  .container h4 {
+    font-size: 1.1rem;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .container-fluid h4,
+  .container h4 {
+    font-size: 1.55rem;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .container-fluid h4,
+  .container h4 {
+    font-size: 1.55rem;
+  }
+}
+@media (min-width: 1200px) and (max-width: 1699px) {
+  .container-fluid h4,
+  .container h4 {
+    font-size: 1.55rem;
+  }
+}
+@media (min-width: 1700px) {
+  .container-fluid h4,
+  .container h4 {
+    font-size: 1.55rem;
+  }
+}
+@media (max-width: 575px) {
+  p {
+    font-size: 14px;
+  }
+}
+@media (min-width: 576px) and (max-width: 767px) {
+  p {
+    font-size: 1.1rem;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  p {
+    font-size: 16px;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  p {
+    font-size: 18.3px;
+  }
+}
+@media (min-width: 1200px) and (max-width: 1699px) {
+  p {
+    font-size: 18.3px;
+  }
+}
+@media (min-width: 1700px) {
+  p {
+    font-size: 18.3px;
+  }
+}
+a {
+  outline: none;
+}
+body .container {
+  font-family: coolvetica;
+}
+nav {
+  background: -webkit-gradient(linear, left top, right top, from(#5561a9), to(#73c6f0));
+  background: -webkit-linear-gradient(left, #5561a9, #73c6f0);
+  background: -o-linear-gradient(left, #5561a9, #73c6f0);
+  background: linear-gradient(90deg, #5561a9, #73c6f0);
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  height: 62px;
+}
+nav .container a {
+  color: #fff !important;
+}
+nav .container .navbar-brand img.logo {
+  width: 37px;
+  height: 42px;
+  position: relative;
+  top: -6px;
+  margin-left: 6px;
+}
+nav .container .navbar-brand span.logo {
+  font-family: trueno;
+  font-weight: bold;
+  font-size: 35px;
+  margin-left: 23px;
+}
+nav .container .sandwich {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  right: 1%;
+}
+nav .container .sandwich span {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+      user-select: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+nav .container .sandwich span,
+nav .container .sandwich span::before,
+nav .container .sandwich span::after {
+  display: block;
+  right: 0;
+  height: 3px;
+  background-color: white;
+  -webkit-transition-property: -webkit-background;
+  /* Будет отслеживать изменение background-color, для создания эффекта длиной в 0.3s (см ниже)*/
+  -o-transition-property: -o-background;
+  -webkit-transition-property: background;
+  -o-transition-property: background;
+  transition-property: background;
+}
+nav .container ul.main {
+  font-size: 14px;
+  list-style-type: none;
+}
+@media (min-width: 992px) {
+  nav .container ul.main li.underlined a {
+    padding-right: 0;
+    padding-left: 0;
+    border-bottom: 2px solid white;
+  }
+  nav .container ul.main li {
+    margin-top: -2px;
+    margin-left: 21px;
+    display: inline-block;
+  }
+  nav .container ul.main li a {
+    padding-bottom: 0;
+  }
+}
+@media (max-width: 991px) {
+  nav .container ul.main {
+    background: -webkit-gradient(linear, left top, right top, from(#6badde), to(#73c6f0));
+    background: -webkit-linear-gradient(left, #6badde, #73c6f0);
+    background: -o-linear-gradient(left, #6badde, #73c6f0);
+    background: linear-gradient(90deg, #6badde, #73c6f0);
+    position: absolute;
+    width: 220px;
+    right: 0;
+    top: 62px;
+  }
+}

@@ -1,0 +1,239 @@
+/*
+Краткое описание описанных тут классов.
+.font-resp-style( ..{breakpoint}-sz.. ) - адаптивные шрифты для всех широт экрана
+    Производные : .h1-resp-style , .h3-resp-style;
+.rounded(@r) - округляет углы - радиус в процентах желательно.
+.transition(duration_animation; time_before_animation; animate_function);
+.text{aligment(r,c,l)}-{breakpoint} - выравнивает по нужному краю текст  и для определённых широт экрана.
+.unselectable() - делает элемент неспособным к выделеню текста внутри.
+.outlineless() - Убираем обводку при нажатии или выделении элемента
+.button (@r:27px; @button-height;)- минимальный шаблон для кнопки.
+.ul (@img-path; @marker-side:20px; @li-margin-bottom:0px; @marker-left: 0px; @marker-top) - шаблон для адаптивного списка
+    Также стоит учитывать, что, если элементы списка будут располагаться по середине (text-align: center;) то казаться будет что он
+    слегка сдвинуть в левый бок, дело в том, что маркер имеет абсолютное позиционирование, поэтому ширины как бы не имеет для других элементов.
+    Чтобы испаравить ситуацию нужно .li-content добавить свойство left: @marker-side/2;
+.horizontal-ul - Список, который располагается по горизонтали(не миксина)
+.transition-property(@property-name) - задаёт кросбраузерно свойство за изменением которого нужно следить и при изменении которого нужно произвести анимацию(обычно идёт в связке с transition).
+    ВНИМАНИЕ при использовании этой миксины на одну строку выше этой mixin'ы @property-name: background-color; в противном случае будет вылезать ошибка @property-name undefined, я так и не нашёл причину этой проблемы.
+*/
+@sm: 576px;
+@md: 768px;
+@lg: 992px;
+@xl: 1200px;
+@x: 1700px;
+#browser(){
+    .prefix(){
+        @w: -webkit-;
+        @m: -moz-;
+        @o: -o-; 
+    }
+}
+.h1-resp-style (@xs-size:1.5rem; @sm-size:1.7rem; @md-size:2rem; @lg-size: 2.3rem; @xl-size: @lg-size; @x-size: @xl-size){
+    text-align: center;
+    .font-resp-style(@xs-sz: @xs-size; @md-sz: @md-size; @lg-sz: @lg-size; @xl-sz: @xl-size; @x-sz: @x-size);
+}
+//Чтобы изменить не все а несколько аргументов - достаточно написать .h1-resp-style(@x-width:1700px; @x-size: 5rem);
+.h3-resp-style (@xs-size:1.3rem; @sm-size:1.5rem; @md-size:1.70rem; @lg-size:@md-size; @xl-size:@lg-size){
+    text-align: center;
+    .font-resp-style(@xs-sz: @xs-size; @md-sz: @md-size; @lg-sz: @lg-size; @xl-sz: @xl-size);
+}
+.h4-resp-style (@xs-size:1.2rem; @sm-size:1.35rem; @md-size:1.5rem; @lg-size:@md-size; @xl-size:@lg-size){
+    text-align: center;
+    .font-resp-style(@xs-sz: @xs-size; @md-sz: @md-size; @lg-sz: @lg-size; @xl-sz: @xl-size);
+}
+//Нужно указать все значения максимально большое значение для размеров экранов
+//т.е. если ты знаешь что на sm будет 30px, a на lg - 40, то указав эти значения а .font-resp-style
+//для шрифтов на sm и md - будет выставленно значение 30px, а для lg и выше - 40px;
+.font-resp-style(@xs-sz:1rem; @sm-sz:1.1rem; @md-sz: @sm-sz; @lg-sz: @md-sz; @xl-sz: @lg-sz; @x-sz: @xl-sz){
+    @media (max-width: (@sm - 1) ){font-size: @xs-sz;}
+    @media (min-width: @sm ) and (max-width: (@md - 1) ){font-size: @sm-sz;}
+    @media (min-width: @md ) and (max-width: (@lg - 1) ){font-size: @md-sz;}
+    @media (min-width: @lg )and (max-width: (@xl - 1) ){font-size: @lg-sz;}
+    @media (min-width: @xl )and (max-width: (@x - 1) ){font-size: @xl-sz;}
+    @media (min-width: @x ){font-size: @x-sz;}
+}
+.rounded(@r: 50%){
+    border-radius: @r;
+    -moz-border-radius: @r;
+    -webkit-border-radius: @r;
+}
+.transition(@n: .5; @m: .1; @function: ease-out){
+    //Первое число отвечает за длительность анимации, второе за время, которое потребуется для срабатывания анимации ( в данном случае если убрать курсор с круга, анимация сработает чере одну десятую секунды), к тому же этот транзишон отвечает за анимацию перехода от состояния hover к обычному состоянию
+    @s:0s;
+    transition: (@s + @n) @function (@s + @m);//@s+@n - такая запись нужна, чтобы преобразовать просто число , в данном случае 0.5 в 0.5s . т.к. для transition нужны именно секунды. К несчастью запись @n : @s + @n - воспринимается  как рекурсивное переопределение переменной, поэтому приходиться не переопределять переменную.
+    -moz-transition: (@s + @n) @function (@s + @m);
+    -webkit-transition: (@s + @n) @function (@s + @m);
+    -o-transition: (@s + @n) @function (@s + @m);
+}
+.text{
+    &r{
+        text-align: right;
+        &-none{text-align:inherit;}
+        &-sm{
+            @media (min-width: @sm ){
+                text-align: right;
+                &-none{text-align:inherit;}
+            }
+        }
+        &-md{
+            @media (min-width: @md ){
+                text-align: right;
+                &-none{text-align:inherit;}
+            }
+        }
+        &-lg{
+            @media (min-width: @lg ){
+                text-align: right;
+                &-none{text-align:inherit;}
+            }
+        }
+        &-xl{
+            @media (min-width: @xl ){
+                text-align: right;
+                &-none{text-align:inherit;}
+            }
+        }
+    }
+    &c{
+        text-align: center;
+        &-none{text-align:inherit;}
+        &-sm{
+            @media (min-width: @sm ){
+                text-align: center;
+                &-none{text-align:inherit;}
+            }
+        }
+        &-md{
+            @media (min-width: @md ){
+                text-align: center;
+                &-none{text-align:inherit;}
+            }
+        }
+        &-lg{
+            @media (min-width: @lg ){
+                text-align: center;
+                &-none{text-align:inherit;}
+            }
+        }
+        &-xl{
+            @media (min-width: @xl ){
+                text-align: center;
+                &-none{text-align:inherit;}
+            }
+        }
+    }
+    &l{
+        text-align: left;
+        &-none{text-align:inherit;}
+        &-sm{
+            @media (min-width: @sm ){
+                text-align: left;
+                &-none{text-align:inherit;}
+            }
+        }
+        &-md{
+            @media (min-width: @md ){
+                text-align: left;
+                &-none{text-align:inherit;}
+            }
+        }
+        &-lg{
+            @media (min-width: @lg ){
+                text-align: left;
+                &-none{text-align:inherit;}
+            }
+        }
+        &-xl{
+            @media (min-width: @xl ){
+                text-align: left;
+                &-none{text-align:inherit;}
+            }
+        }
+    }
+}
+.unselectable {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.outlineless{outline:none;}//Убираем обводку при нажатии или выделении элемента
+
+//Стоит отметить, чтобы задавать высоту этой кнопки нужно создать внутри неё фиктивный, ничем незаполненный div
+.button (@r:27px; @button-height;){
+    .rounded(@r);
+    text-decoration: none;
+    display: inline-block;
+
+    &>div{//это искуственно посаженный блок, чтобы задать высоту кнопке.
+        display: inline-block;
+        height: @button-height;
+        vertical-align: middle;//Если не понимаешь зачем тут это свойство, то читай в css>проблемы со свойствами>vertical-align
+    }
+}
+.ul (@img-path; @marker-side:20px; @li-margin-bottom:0px; @marker-left: -1 * @marker-side; @marker-top: 50%){
+    li{
+        list-style: none;
+
+        .li-content{
+            display: inline-block;
+            position: relative;
+            margin-bottom: @li-margin-bottom;
+
+            .li-marker-container{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: @marker-left;
+                .li-marker{
+                    width: @marker-side;
+                    height: @marker-side;
+                    //Чтобы сделать разные рисунки маркера нужно будет внести в style.less следующий код
+                    //li{.li-content{.li-marker-container{.li-marker{background-image: url("");}}}}
+                    background-image: url(@img-path);
+                    position: relative;
+                    top: @marker-top;
+                    transform: translateY(-50%);
+                    }
+            }
+            .li-text-container{ 
+                .li-text{
+                    display: inline-block;
+                    position: relative;
+                }
+            }
+        }
+    }
+}
+
+.horizontal-ul{
+    li{
+        list-style: none;
+        display: inline-block;
+    }
+}
+a.my-anchor{
+    text-decoration:none;
+    color: inherit;
+
+    &:hover{
+        text-decoration:none;
+        color: inherit;
+    }
+    &:active{
+        text-decoration:none;
+        color: inherit;
+    }
+}
+.transition-property(@property-name:background-color){
+    @w: -webkit-;
+    @m: -moz-;
+    @o: -o-; 
+    @w-prop: @{w}@{property-name};
+    @m-prop: @{m}@{property-name};
+    @o-prop: @{o}@{property-name};
+    -webkit-transition-property: @w-prop;/* Будет отслеживать изменение background-color, для создания эффекта длиной в 0.3s (см ниже)*/    
+    -moz-transition-property: @m-prop; 
+    -o-transition-property: @o-prop; 
+    transition-property: @property-name;
+}

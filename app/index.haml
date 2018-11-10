@@ -1,0 +1,28 @@
+!!! 5
+%html(lang="en")
+  %head
+    %meta(content="text/html; charset=UTF-8" http-equiv="Content-Type")/
+    %meta(charset="UTF-8")/
+    %title BestLoan
+    %meta(content="width=device-width, initial-scale=1" name="viewport")/
+    %link(href="css/style.css" rel="stylesheet")/
+    %link(href="css/libs.min.css" rel="stylesheet prefetch")/
+  %body
+    %nav.navbar.navbar-expand-lg.fixed-top.navbar-light
+      .container
+        %a.navbar-brand(href="#!") 
+          %img.logo(src="img/shapka/logo.png")
+          %span.logo Bestloan
+        .sandwich
+          %span
+        %ul#navMenu.main
+          %li
+            %a.nav-link.d-lg-inline-block(data-value="about_us" href="#!")
+              О КОМПАНИИ
+              %span.sr-only (current)
+          %li
+            %a.nav-link(data-value="wishing" href="#!") ПОЛЕЗНАЯ ИНФОРМАЦИЯ
+          %li.nav-item
+            %a.nav-link(data-value="feedback" href="#!") КОНТАКТЫ
+    %script(src="js/libs.min.js")
+    %script(src="js/script.js")

@@ -1,0 +1,122 @@
+@import "_default.less";
+@font-face {//Для рядовых текстов
+    font-family: 'coolvetica';
+    src: url('../fonts/coolvetica_rg-webfont.woff2') format('woff2'),
+         url('../fonts/coolvetica_rg-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {//Для заголовков
+    font-family: 'trueno';
+    src: url('../fonts/trueno.bd-webfont.woff2') format('woff2'),
+         url('../fonts/trueno.bd-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+.container-fluid h1, .container h1{
+    font-family:roboto-thin;
+    .h1-resp-style(@xs-size:1.6rem;@x-size:60px);
+}
+.container-fluid h3, .container h3{
+    font-family:Roboto;
+    .h3-resp-style(@xl-size:36px);
+}
+.container-fluid h4, .container h4{
+    font-family:Roboto;
+    .h4-resp-style(@md-size: 1.55rem);   
+}
+p{
+    .font-resp-style(@xs-sz: 14px; @md-sz: 16px; @lg-sz: 18.3px);
+}
+a{.outlineless();}
+
+@left-gradient-color: #5561a9;
+@right-gradient-color: #73c6f0;
+.gradient(@deg:90deg; @first-color: @left-gradient-color; @second-color: @right-gradient-color){
+    background: linear-gradient(@deg, @first-color, @second-color);
+}
+body{
+    .container{
+        font-family: coolvetica;
+    }
+}
+nav{
+    .gradient();
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    @navbar-height: 62px;
+    height: @navbar-height;
+    .container{
+        
+        a{color: #fff !important;}
+        .navbar-brand{
+            img.logo{
+                width: 37px;
+                height: 42px;
+                position: relative;
+                top: -6px;
+                margin-left: 6px;
+            }
+            span.logo{
+                font-family: trueno;
+                font-weight: bold;
+                font-size: 35px;
+                margin-left: 23px;
+            }
+        }
+
+        .sandwich{
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            right: 1%;
+
+            span{
+                .unselectable();
+                position: absolute;
+                top: 50%;
+                left: 50%;
+
+                &, &::before, &::after{
+                    display: block;
+                    right: 0;
+                    height: 3px;
+                    background-color: white;
+
+                    @property-name:background-color;
+                    .transition-property(background);
+
+                }
+            }
+        }
+
+        ul.main{
+            @left-side-color-of-menu-bar-for-gradient: #6badde;
+            font-size: 14px;
+            list-style-type: none;
+
+            @media(min-width: @lg) { 
+                li.underlined{
+                    a{
+                        padding-right:0;
+                        padding-left: 0;
+                        border-bottom: 2px solid white;
+                    }
+
+                }
+                li{
+                    margin-top: -2px;
+                    margin-left: 21px;
+                    a{padding-bottom: 0;}
+                    display: inline-block;
+                }
+            }
+            @media(max-width: @lg - 1) { 
+                .gradient(@first-color:@left-side-color-of-menu-bar-for-gradient);
+                position: absolute;
+                width: 220px;
+                right: 0;
+                top: @navbar-height;
+            }
+        }
+    }
+}
