@@ -63,8 +63,9 @@ gulp.task('buildCSS',['lessTask'],function(){
 
 gulp.task('watcher',['brsyTask','lessTask','buildScripts','buildCSS','hamlTask'],function(){//Я убрал lessTask из списка первоначального исполнеиня т.к. из-за его первоначального срабатывания возникали проблемы.
     gulp.watch('app/less/**/*.less',['lessTask']);
-    gulp.watch('app/*.html', browserSync.reload);
     gulp.watch('app/*.haml',['hamlTask']);
+    gulp.watch('app/*.html', browserSync.reload);
+    gulp.watch('app/js/*.js', browserSync.reload);
     console.log("Wathcer is watch on you.");
 });
 

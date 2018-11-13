@@ -1,29 +1,34 @@
+console.log("work");
 $(document).ready(function(){
-    //функция для плавного скролла до якоря (с помощью ссылок)
- $("ul.navbar-nav a:not(.dropdown-toggle)").click(function(){
-     //Почему-то, если не добавить а:not(.dropdown-toggle), то при нажатии на ссылку с которой начинается выпадающее меню функция добавления класса active не будет срабатывать, я думаю это как-то связанно с animate, хотя на самом деле у меня нет никаких идей.
-    var dropdownMenuHeight = $('div.dropdown-menu.show').css('height');
-    var windowWidth = $(window).width();
-    var isUndefined = dropdownMenuHeight == undefined;
-    var isLgWidth = windowWidth > 991 ;
-    var additionalOffset = (!isUndefined && !isLgWidth) ? (parseInt(dropdownMenuHeight)) : ( 0 )  ;
-    var navHeight = $('nav').css('height');
- 	$("body,html").stop(true,false).animate({
- 		scrollTop:$("#" + $(this).data('value')).offset().top - (parseInt(navHeight) - additionalOffset)
- 	},1000)
- });
-    //функции которые позволяют классу active появляться в нужных местах в nav
-    $("ul.navbar-nav li > a:not(.dropdown-toggle)").click(function(){
-      $("ul.navbar-nav a").removeClass("active");
-      $(this).addClass("active");
-    });
-    $("ul.navbar-nav li > a.dropdown-toggle").click(function(){
-      $("ul.navbar-nav li > a").removeClass("active");
-      $(this).addClass("active");
-    });
-    $("div.dropdown-menu > a").click(function(){
-      $("div.dropdown-menu > a").removeClass("active");
-      $(this).addClass("active");
-    });
+	var lt = $(window).scrollTop();//Инициализируем положение пользователя на сайте
+	var isItMobileTime = isItMobileTimeFunc(); // обьявляем и инициализируем 
+  $('.sandwich').click(function(){
+    $('.sandwich').toggleClass('clicked');
+    $('#nav').toggleClass('show');
+  });
 
+  //Если окно меняет свое разрешение
+  $(window).on('resize',function(){
+  	isItMobileTime = isItMobileTimeFunc();
+  	$('.navbar').stop(true, true).fadeIn();//Эта строка нужна, чтобы если ты смотрел на сайт в мобилковой версии и крутанул вниз, navbar изчез, а затем перешёл в дектоп, то navbar бы появился снова.
+  })
+
+	$(window).scroll(function(event){
+		var st = $(window).scrollTop();
+		// alert('st = ' + st + ' lt = ' + lt + ' isItMobileTime = ' + isItMobileTime + ' (st > lt) and isItMobileTime = ' + ((st > lt) || isItMobileTime));
+		if((st > lt) && isItMobileTime) {
+			console.log("downscroll code");
+			$('.navbar').stop(true).fadeOut();
+		}else{
+			console.log("upscroll code");
+			$('.navbar').stop(true).fadeIn();
+		}
+		lt = $(window).scrollTop();//обновляем переменную.
+	})
 })
+
+function isItMobileTimeFunc(){
+ 	//Если ширина экрана не более 991px(т.е. меньше на 1 px чем lg) то проверяем как работает 
+	if($(window).width() <= 991){return true;}
+	else { return false;}
+}

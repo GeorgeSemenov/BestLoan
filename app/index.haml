@@ -8,21 +8,55 @@
     %link(href="css/style.css" rel="stylesheet")/
     %link(href="css/libs.min.css" rel="stylesheet prefetch")/
   %body
-    %nav.navbar.navbar-expand-lg.fixed-top.navbar-light
+    %nav.navbar.navbar-expand-lg.fixed-top.navbar-light#nav
       .container
         %a.navbar-brand(href="#!") 
           %img.logo(src="img/shapka/logo.png")
           %span.logo Bestloan
         .sandwich
           %span
-        %ul#navMenu.main
+        %ul.navMenu
           %li
-            %a.nav-link.d-lg-inline-block(data-value="about_us" href="#!")
+            %a.nav-link.underlined(data-value="about_us" href="#!")
               О КОМПАНИИ
               %span.sr-only (current)
           %li
             %a.nav-link(data-value="wishing" href="#!") ПОЛЕЗНАЯ ИНФОРМАЦИЯ
           %li.nav-item
             %a.nav-link(data-value="feedback" href="#!") КОНТАКТЫ
+    .first-screen
+      .container
+        %h1 Bestloan - сервис сравнения онлайн кредитов в Украние
+      .container.offer-container
+        .column
+          %picture
+            %source(media="(min-width: 1200px)" srcset="img/firstScreen/eye-1200.png")
+            %source(media="(min-width: 992px)" srcset="img/firstScreen/eye-992.png")
+            %source(media="(min-width: 768px)" srcset="img/firstScreen/eye-768.png")
+            %source(media="(min-width: 576px)" srcset="img/firstScreen/eye-576.png")
+            %source(media="(max-width: 575px)" srcset="img/firstScreen/eye-576.png")
+            %img(alt="big brother is watching you" src="img/firstScreen/eye.png")
+          %h4 Безопасно
+          %p Оптимальный вариант, кредиты без процентов
+        .column
+          %picture
+            %source(media="(min-width: 1200px)" srcset="img/firstScreen/diamond-1200.png")
+            %source(media="(min-width: 992px)" srcset="img/firstScreen/diamond-992.png")
+            %source(media="(min-width: 768px)" srcset="img/firstScreen/diamond-768.png")
+            %source(media="(min-width: 576px)" srcset="img/firstScreen/diamond-576.png")
+            %source(media="(max-width: 575px)" srcset="img/firstScreen/diamond-576.png")
+            %img(alt="diamond" src="img/firstScreen/diamond.png")
+          %h4 Безопасно
+          %p Оптимальный вариант, кредиты без процентов
+        .column
+          %picture
+            %source(media="(min-width: 1200px)" srcset="img/firstScreen/clock-1200.png")
+            %source(media="(min-width: 992px)" srcset="img/firstScreen/clock-992.png")
+            %source(media="(min-width: 768px)" srcset="img/firstScreen/clock-768.png")
+            %source(media="(min-width: 576px)" srcset="img/firstScreen/clock-576.png")
+            %source(media="(max-width: 575px)" srcset="img/firstScreen/clock-576.png")
+            %img(alt="time is money" src="img/firstScreen/clock.png")
+          %h4 Безопасно
+          %p Оптимальный вариант, кредиты без процентов
     %script(src="js/libs.min.js")
     %script(src="js/script.js")

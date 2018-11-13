@@ -1,9 +1,10 @@
 /*
 Краткое описание описанных тут классов.
 .font-resp-style( ..{breakpoint}-sz.. ) - адаптивные шрифты для всех широт экрана
-    Производные : .h1-resp-style , .h3-resp-style;
+    Производные : .h1-resp-style , .h3-resp-style, .h4-resp-style,  .resp-font(@xl-font-size);
 .rounded(@r) - округляет углы - радиус в процентах желательно.
-.transition(duration_animation; time_before_animation; animate_function);
+.transition(duration_animation; time_before_animation; animate_function); временные параметры можно указывать как в секундах, так и просто числом.
+    ВНИМАНИЕ в данной миксины не учтенно transition-property, потому что к этому свойству нужны браузерные префиксы я реализовал его отдельно ниже.
 .text{aligment(r,c,l)}-{breakpoint} - выравнивает по нужному краю текст  и для определённых широт экрана.
 .unselectable() - делает элемент неспособным к выделеню текста внутри.
 .outlineless() - Убираем обводку при нажатии или выделении элемента
@@ -13,8 +14,9 @@
     слегка сдвинуть в левый бок, дело в том, что маркер имеет абсолютное позиционирование, поэтому ширины как бы не имеет для других элементов.
     Чтобы испаравить ситуацию нужно .li-content добавить свойство left: @marker-side/2;
 .horizontal-ul - Список, который располагается по горизонтали(не миксина)
-.transition-property(@property-name) - задаёт кросбраузерно свойство за изменением которого нужно следить и при изменении которого нужно произвести анимацию(обычно идёт в связке с transition).
-    ВНИМАНИЕ при использовании этой миксины на одну строку выше этой mixin'ы @property-name: background-color; в противном случае будет вылезать ошибка @property-name undefined, я так и не нашёл причину этой проблемы.
+.transition-property(@property-name) - задаёт кросбраузерно свойство за изменением которого нужно следить и при изменении которого нужно произвести анимацию(обычно идёт в связке с transition-duration).
+    ВНИМАНИЕ при использовании этой миксины на одну строку выше этой mixin'ы @property-name: dummy-property(или любое другое значение); в противном случае будет вылезать ошибка @property-name undefined, я так и не нашёл причину этой проблемы.
+transition-duration (@duration)- Задаёт время время выполнения анимации (можно указывать как в секундах, так и просто числом)
 */
 .textr {
   text-align: right;
@@ -326,7 +328,7 @@ a {
 body .container {
   font-family: coolvetica;
 }
-nav {
+nav.navbar {
   background: -webkit-gradient(linear, left top, right top, from(#5561a9), to(#73c6f0));
   background: -webkit-linear-gradient(left, #5561a9, #73c6f0);
   background: -o-linear-gradient(left, #5561a9, #73c6f0);
@@ -335,29 +337,50 @@ nav {
           box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   height: 62px;
 }
-nav .container a {
+@media (max-width: 991px) {
+  nav.navbar .container {
+    height: 100%;
+  }
+}
+nav.navbar .container a {
   color: #fff !important;
 }
-nav .container .navbar-brand img.logo {
+nav.navbar .container .navbar-brand {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+      user-select: none;
+}
+@media (max-width: 991px) {
+  nav.navbar .container .navbar-brand {
+    height: 100%;
+    position: relative;
+    bottom: 11px;
+  }
+}
+nav.navbar .container .navbar-brand img.logo {
   width: 37px;
   height: 42px;
   position: relative;
   top: -6px;
   margin-left: 6px;
 }
-nav .container .navbar-brand span.logo {
+nav.navbar .container .navbar-brand span.logo {
   font-family: trueno;
   font-weight: bold;
   font-size: 35px;
   margin-left: 23px;
 }
-nav .container .sandwich {
+nav.navbar .container .sandwich {
   width: 50px;
   height: 50px;
   position: absolute;
-  right: 1%;
+  right: 10px;
+  bottom: 9px;
+  z-index: 21;
+  cursor: pointer;
 }
-nav .container .sandwich span {
+nav.navbar .container .sandwich span {
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
@@ -366,48 +389,175 @@ nav .container .sandwich span {
   top: 50%;
   left: 50%;
 }
-nav .container .sandwich span,
-nav .container .sandwich span::before,
-nav .container .sandwich span::after {
+nav.navbar .container .sandwich span,
+nav.navbar .container .sandwich span::before,
+nav.navbar .container .sandwich span::after {
   display: block;
   right: 0;
   height: 3px;
   background-color: white;
-  -webkit-transition-property: -webkit-background;
+  -webkit-transition-property: -webkit-background-color;
   /* Будет отслеживать изменение background-color, для создания эффекта длиной в 0.3s (см ниже)*/
-  -o-transition-property: -o-background;
-  -webkit-transition-property: background;
-  -o-transition-property: background;
-  transition-property: background;
+  -o-transition-property: -o-background-color;
+  -webkit-transition-property: background-color;
+  -o-transition-property: background-color;
+  transition-property: background-color;
+  -webkit-transition-property: -webkit-transform;
+  /* Будет отслеживать изменение background-color, для создания эффекта длиной в 0.3s (см ниже)*/
+  -o-transition-property: -o-transform;
+  transition-property: -webkit-transform;
+  -o-transition-property: transform;
+  transition-property: transform;
+  transition-property: transform, -webkit-transform;
+  -webkit-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
 }
-nav .container ul.main {
-  font-size: 14px;
-  list-style-type: none;
+nav.navbar .container .sandwich span::before,
+nav.navbar .container .sandwich span::after {
+  position: absolute;
+  content: "";
 }
-@media (min-width: 992px) {
-  nav .container ul.main li.underlined a {
-    padding-right: 0;
-    padding-left: 0;
-    border-bottom: 2px solid white;
-  }
-  nav .container ul.main li {
-    margin-top: -2px;
-    margin-left: 21px;
-    display: inline-block;
-  }
-  nav .container ul.main li a {
-    padding-bottom: 0;
-  }
+nav.navbar .container .sandwich span::before {
+  top: -9px;
+  width: 20px;
+}
+nav.navbar .container .sandwich span::after {
+  top: 9px;
+  width: 33px;
+}
+nav.navbar .container .sandwich.clicked {
+  z-index: 99;
+}
+nav.navbar .container .sandwich.clicked span {
+  background-color: transparent;
+}
+nav.navbar .container .sandwich.clicked span::before {
+  -webkit-transform: translateY(9px) rotate(45deg);
+      -ms-transform: translateY(9px) rotate(45deg);
+          transform: translateY(9px) rotate(45deg);
+  width: 33px;
+}
+nav.navbar .container .sandwich.clicked span::after {
+  -webkit-transform: translateY(-9px) rotate(-45deg);
+      -ms-transform: translateY(-9px) rotate(-45deg);
+          transform: translateY(-9px) rotate(-45deg);
+}
+nav.navbar .container .sandwich.clicked span::after,
+nav.navbar .container .sandwich.clicked span::before {
+  background-color: black;
+}
+nav.navbar .container nav#nav {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+      user-select: none;
 }
 @media (max-width: 991px) {
-  nav .container ul.main {
+  nav.navbar .container nav#nav {
     background: -webkit-gradient(linear, left top, right top, from(#6badde), to(#73c6f0));
     background: -webkit-linear-gradient(left, #6badde, #73c6f0);
     background: -o-linear-gradient(left, #6badde, #73c6f0);
     background: linear-gradient(90deg, #6badde, #73c6f0);
     position: absolute;
-    width: 220px;
+    width: 250px;
     right: 0;
     top: 62px;
+    z-index: 20;
+    padding: 0px;
+    -webkit-transform: translateX(100%);
+        -ms-transform: translateX(100%);
+            transform: translateX(100%);
+    -webkit-transition: -webkit-transform 0.55s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    transition: -webkit-transform 0.55s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    -o-transition: transform 0.55s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    transition: transform 0.55s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    transition: transform 0.55s cubic-bezier(0.785, 0.135, 0.15, 0.86), -webkit-transform 0.55s cubic-bezier(0.785, 0.135, 0.15, 0.86);
   }
+  nav.navbar .container nav#nav ul.navMenu li {
+    -webkit-transform: translateX(60px);
+        -ms-transform: translateX(60px);
+            transform: translateX(60px);
+    opacity: 0;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    color: #fff;
+  }
+  nav.navbar .container nav#nav ul.navMenu li:last-of-type {
+    margin-bottom: 0px;
+  }
+  nav.navbar .container nav#nav ul.navMenu li a {
+    display: inline-block;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 0;
+  }
+  nav.navbar .container nav#nav ul.navMenu li a.underlined {
+    border-bottom: 3px solid;
+    padding-bottom: 7px;
+  }
+  nav.navbar .container nav#nav ul.navMenu li a:hover {
+    color: #b7ac7f;
+  }
+  nav.navbar .container nav#nav.show {
+    -webkit-transform: translateX(0px);
+        -ms-transform: translateX(0px);
+            transform: translateX(0px);
+  }
+  nav.navbar .container nav#nav.show ul.navMenu li {
+    -webkit-transform: translateX(0px);
+        -ms-transform: translateX(0px);
+            transform: translateX(0px);
+    opacity: 1;
+  }
+  nav.navbar .container nav#nav.show ul.navMenu li:nth-child(1) {
+    -webkit-transition-delay: 0.2s;
+         -o-transition-delay: 0.2s;
+            transition-delay: 0.2s;
+  }
+  nav.navbar .container nav#nav.show ul.navMenu li:nth-child(2) {
+    -webkit-transition-delay: 0.4s;
+         -o-transition-delay: 0.4s;
+            transition-delay: 0.4s;
+  }
+  nav.navbar .container nav#nav.show ul.navMenu li:nth-child(3) {
+    -webkit-transition-delay: 0.6s;
+         -o-transition-delay: 0.6s;
+            transition-delay: 0.6s;
+  }
+}
+nav.navbar .container nav#nav ul.navMenu {
+  font-size: 14px;
+  list-style-type: none;
+}
+@media (min-width: 992px) {
+  nav.navbar .container nav#nav ul.navMenu {
+    margin-top: 10px;
+  }
+  nav.navbar .container nav#nav ul.navMenu li {
+    margin-top: -2px;
+    margin-left: 21px;
+    display: inline-block;
+  }
+  nav.navbar .container nav#nav ul.navMenu li a {
+    padding-bottom: 0;
+  }
+  nav.navbar .container nav#nav ul.navMenu li a.underlined {
+    display: inline-block;
+    padding-left: 0;
+    padding-right: 0;
+    border-bottom: 3px solid white;
+  }
+}
+.first-screen {
+  padding-top: 62px;
+  background: -webkit-gradient(linear, left top, right top, from(#5561a9), to(#73c6f0));
+  background: -webkit-linear-gradient(left, #5561a9, #73c6f0);
+  background: -o-linear-gradient(left, #5561a9, #73c6f0);
+  background: linear-gradient(90deg, #5561a9, #73c6f0);
+}
+.first-screen .container .column {
+  display: inline-block;
+  text-align: center;
 }

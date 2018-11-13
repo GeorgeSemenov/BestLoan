@@ -1,9 +1,10 @@
 /*
 Краткое описание описанных тут классов.
 .font-resp-style( ..{breakpoint}-sz.. ) - адаптивные шрифты для всех широт экрана
-    Производные : .h1-resp-style , .h3-resp-style;
+    Производные : .h1-resp-style , .h3-resp-style, .h4-resp-style,  .resp-font(@xl-font-size);
 .rounded(@r) - округляет углы - радиус в процентах желательно.
-.transition(duration_animation; time_before_animation; animate_function);
+.transition(duration_animation; time_before_animation; animate_function); временные параметры можно указывать как в секундах, так и просто числом.
+    ВНИМАНИЕ в данной миксины не учтенно transition-property, потому что к этому свойству нужны браузерные префиксы я реализовал его отдельно ниже.
 .text{aligment(r,c,l)}-{breakpoint} - выравнивает по нужному краю текст  и для определённых широт экрана.
 .unselectable() - делает элемент неспособным к выделеню текста внутри.
 .outlineless() - Убираем обводку при нажатии или выделении элемента
@@ -13,8 +14,9 @@
     слегка сдвинуть в левый бок, дело в том, что маркер имеет абсолютное позиционирование, поэтому ширины как бы не имеет для других элементов.
     Чтобы испаравить ситуацию нужно .li-content добавить свойство left: @marker-side/2;
 .horizontal-ul - Список, который располагается по горизонтали(не миксина)
-.transition-property(@property-name) - задаёт кросбраузерно свойство за изменением которого нужно следить и при изменении которого нужно произвести анимацию(обычно идёт в связке с transition).
-    ВНИМАНИЕ при использовании этой миксины на одну строку выше этой mixin'ы @property-name: background-color; в противном случае будет вылезать ошибка @property-name undefined, я так и не нашёл причину этой проблемы.
+.transition-property(@property-name) - задаёт кросбраузерно свойство за изменением которого нужно следить и при изменении которого нужно произвести анимацию(обычно идёт в связке с transition-duration).
+    ВНИМАНИЕ при использовании этой миксины на одну строку выше этой mixin'ы @property-name: dummy-property(или любое другое значение); в противном случае будет вылезать ошибка @property-name undefined, я так и не нашёл причину этой проблемы.
+transition-duration (@duration)- Задаёт время время выполнения анимации (можно указывать как в секундах, так и просто числом)
 */
 @sm: 576px;
 @md: 768px;
@@ -26,6 +28,7 @@
         @w: -webkit-;
         @m: -moz-;
         @o: -o-; 
+        @ms: -ms-;
     }
 }
 .h1-resp-style (@xs-size:1.5rem; @sm-size:1.7rem; @md-size:2rem; @lg-size: 2.3rem; @xl-size: @lg-size; @x-size: @xl-size){
@@ -39,6 +42,9 @@
 }
 .h4-resp-style (@xs-size:1.2rem; @sm-size:1.35rem; @md-size:1.5rem; @lg-size:@md-size; @xl-size:@lg-size){
     text-align: center;
+    .font-resp-style(@xs-sz: @xs-size; @md-sz: @md-size; @lg-sz: @lg-size; @xl-sz: @xl-size);
+}
+.font-resp(@xs-size:@sm-size * @multiplier; @sm-size:@md-size * @multiplier; @md-size:@lg-size * @multiplier; @lg-size:@font-size; @xl-size:@font-size; @font-size: 18.3px; @multiplier: 0.87){
     .font-resp-style(@xs-sz: @xs-size; @md-sz: @md-size; @lg-sz: @lg-size; @xl-sz: @xl-size);
 }
 //Нужно указать все значения максимально большое значение для размеров экранов
@@ -229,11 +235,22 @@ a.my-anchor{
     @w: -webkit-;
     @m: -moz-;
     @o: -o-; 
+    @ms: -ms-;
     @w-prop: @{w}@{property-name};
     @m-prop: @{m}@{property-name};
     @o-prop: @{o}@{property-name};
+    @ms-prop: @{ms}@{property-name};
     -webkit-transition-property: @w-prop;/* Будет отслеживать изменение background-color, для создания эффекта длиной в 0.3s (см ниже)*/    
     -moz-transition-property: @m-prop; 
     -o-transition-property: @o-prop; 
+    -ms-transition-property: @ms-prop;
     transition-property: @property-name;
+}
+.transition-duration(@duration){
+  @s: 0s;
+  -webkit-transition-duration: @s + @duration ; 
+  -moz-transition-duration: @s + @duration; 
+  -o-transition-duration: @s + @duration;   
+  -ms-transition-duration: @s + @duration;
+  transition-duration: @s + @duration;
 }
