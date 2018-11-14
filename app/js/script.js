@@ -4,7 +4,7 @@ $(document).ready(function(){
 	var isItMobileTime = isItMobileTimeFunc(); // обьявляем и инициализируем 
   $('.sandwich').click(function(){
     $('.sandwich').toggleClass('clicked');
-    $('#nav').toggleClass('show');
+    $('.navMenu').toggleClass('show');
   });
 
   //Если окно меняет свое разрешение
