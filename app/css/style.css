@@ -337,12 +337,19 @@ nav.navbar {
           box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   height: 62px;
 }
+@media (max-width: 991px) {
+  nav.navbar {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
 nav.navbar .container {
   position: relative;
 }
 @media (max-width: 991px) {
   nav.navbar .container {
     height: 100%;
+    max-width: 100%;
   }
 }
 nav.navbar .container a {
@@ -379,7 +386,7 @@ nav.navbar .container .sandwich {
   height: 50px;
   position: absolute;
   right: 10px;
-  bottom: 9px;
+  bottom: 2px;
   z-index: 21;
   cursor: pointer;
 }
@@ -491,9 +498,10 @@ nav.navbar .container ul.navMenu {
     position: absolute;
     width: 250px;
     right: 0;
-    top: 62px;
+    top: 54px;
     z-index: 20;
     padding: 0px;
+    padding-left: 25px;
     -webkit-transform: translateX(100%);
         -ms-transform: translateX(100%);
             transform: translateX(100%);
@@ -534,26 +542,26 @@ nav.navbar .container ul.navMenu {
         -ms-transform: translateX(0px);
             transform: translateX(0px);
   }
-  nav.navbar .container ul.navMenu.show ul.navMenu li {
+  nav.navbar .container ul.navMenu.show li {
     -webkit-transform: translateX(0px);
         -ms-transform: translateX(0px);
             transform: translateX(0px);
     opacity: 1;
   }
-  nav.navbar .container ul.navMenu.show ul.navMenu li:nth-child(1) {
-    -webkit-transition-delay: 0.2s;
-         -o-transition-delay: 0.2s;
-            transition-delay: 0.2s;
+  nav.navbar .container ul.navMenu.show li:nth-child(1) {
+    -webkit-transition-delay: 0.3s;
+         -o-transition-delay: 0.3s;
+            transition-delay: 0.3s;
   }
-  nav.navbar .container ul.navMenu.show ul.navMenu li:nth-child(2) {
-    -webkit-transition-delay: 0.4s;
-         -o-transition-delay: 0.4s;
-            transition-delay: 0.4s;
+  nav.navbar .container ul.navMenu.show li:nth-child(2) {
+    -webkit-transition-delay: 0.5s;
+         -o-transition-delay: 0.5s;
+            transition-delay: 0.5s;
   }
-  nav.navbar .container ul.navMenu.show ul.navMenu li:nth-child(3) {
-    -webkit-transition-delay: 0.6s;
-         -o-transition-delay: 0.6s;
-            transition-delay: 0.6s;
+  nav.navbar .container ul.navMenu.show li:nth-child(3) {
+    -webkit-transition-delay: 0.7s;
+         -o-transition-delay: 0.7s;
+            transition-delay: 0.7s;
   }
 }
 .first-screen {
