@@ -1,6 +1,6 @@
 #!/bin/bash
 git add -A . && \
-echo "Введи текст комита, будь человеком" && \
+echo "---------------------------------Введи текст комита, будь человеком" && \
 read commitMessage && \
 
 git commit -m "$commitMessage" && \
@@ -12,5 +12,5 @@ git push origin $branch && \
 
 read && \
 
-echo GeorgeSemenov
-echo ytyfGBfw1
+echo "GeorgeSemenov"
+echo "ytyfGBfw1"
