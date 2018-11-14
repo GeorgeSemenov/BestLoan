@@ -5,12 +5,12 @@ read commitMessage && \
 
 git commit -m "$commitMessage" && \
 
-echo 'Enter the name of the branch:' && \
+echo '---------------------------------Enter the name of the branch:' && \
 read branch && \
 
 git push origin $branch && \
 
 read && \
 
-echo "GeorgeSemenov"
-echo "ytyfGBfw1"
+echo "GeorgeSemenov ytyfGBfw1" | commit.sh && \
+
