@@ -171,19 +171,19 @@ a.my-anchor:active {
 }
 .container-fluid h1,
 .container h1 {
-  font-family: roboto-thin;
+  font-family: trueno;
   text-align: center;
 }
 @media (max-width: 575px) {
   .container-fluid h1,
   .container h1 {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
   }
 }
 @media (min-width: 576px) and (max-width: 767px) {
   .container-fluid h1,
   .container h1 {
-    font-size: 1.1rem;
+    font-size: 1.4rem;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
@@ -195,24 +195,24 @@ a.my-anchor:active {
 @media (min-width: 992px) and (max-width: 1199px) {
   .container-fluid h1,
   .container h1 {
-    font-size: 2.3rem;
+    font-size: 2.4rem;
   }
 }
 @media (min-width: 1200px) and (max-width: 1699px) {
   .container-fluid h1,
   .container h1 {
-    font-size: 2.3rem;
+    font-size: 2.4rem;
   }
 }
 @media (min-width: 1700px) {
   .container-fluid h1,
   .container h1 {
-    font-size: 60px;
+    font-size: 2.4rem;
   }
 }
 .container-fluid h3,
 .container h3 {
-  font-family: Roboto;
+  font-family: trueno;
   text-align: center;
 }
 @media (max-width: 575px) {
@@ -224,7 +224,7 @@ a.my-anchor:active {
 @media (min-width: 576px) and (max-width: 767px) {
   .container-fluid h3,
   .container h3 {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
@@ -253,7 +253,7 @@ a.my-anchor:active {
 }
 .container-fluid h4,
 .container h4 {
-  font-family: Roboto;
+  font-family: trueno;
   text-align: center;
 }
 @media (max-width: 575px) {
@@ -265,7 +265,7 @@ a.my-anchor:active {
 @media (min-width: 576px) and (max-width: 767px) {
   .container-fluid h4,
   .container h4 {
-    font-size: 1.1rem;
+    font-size: 1.35rem;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
@@ -294,7 +294,7 @@ a.my-anchor:active {
 }
 @media (max-width: 575px) {
   p {
-    font-size: 14px;
+    font-size: 16px;
   }
 }
 @media (min-width: 576px) and (max-width: 767px) {
@@ -327,6 +327,18 @@ a {
 }
 body .container {
   font-family: coolvetica;
+}
+.ui-widget-content {
+  background: #6b6b6b;
+  border-color: #6b6b6b;
+}
+.ui-slider-handle {
+  background: #c1c2c4;
+  -webkit-border-radius: 0.6em;
+          border-radius: 0.6em;
+}
+.ui-slider-range {
+  background: #34a3db;
 }
 nav.navbar {
   background: -webkit-gradient(linear, left top, right top, from(#5561a9), to(#73c6f0));
@@ -609,4 +621,9 @@ nav.navbar .container ul.navMenu {
   -webkit-transform: translate(-50%, -50%);
       -ms-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
+}
+@media (max-width: 991px) {
+  .first-screen .offer-container .column p {
+    margin-bottom: 0;
+  }
 }

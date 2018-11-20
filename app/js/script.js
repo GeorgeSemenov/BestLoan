@@ -2,16 +2,17 @@ console.log("work");
 $(document).ready(function(){
 	var lt = $(window).scrollTop();//Инициализируем положение пользователя на сайте
 	var isItMobileTime = isItMobileTimeFunc(); // обьявляем и инициализируем 
-  $('.sandwich').click(function(){
-    $('.sandwich').toggleClass('clicked');
-    $('.navMenu').toggleClass('show');
-  });
 
-  //Если окно меняет свое разрешение
-  $(window).on('resize',function(){
-  	isItMobileTime = isItMobileTimeFunc();
-  	$('.navbar').stop(true, true).fadeIn();//Эта строка нужна, чтобы если ты смотрел на сайт в мобилковой версии и крутанул вниз, navbar изчез, а затем перешёл в дектоп, то navbar бы появился снова.
-  })
+	$('.sandwich').click(function(){
+	    $('.sandwich').toggleClass('clicked');
+	    $('.navMenu').toggleClass('show');
+	});
+
+	//Если окно меняет свое разрешение
+	$(window).on('resize',function(){
+		isItMobileTime = isItMobileTimeFunc();
+		$('.navbar').stop(true, true).fadeIn();//Эта строка нужна, чтобы если ты смотрел на сайт в мобилковой версии и крутанул вниз, navbar изчез, а затем перешёл в дектоп, то navbar бы появился снова.
+	})
 
 	$(window).scroll(function(event){
 		var st = $(window).scrollTop();
@@ -24,6 +25,19 @@ $(document).ready(function(){
 			$('.navbar').stop(true).fadeIn();
 		}
 		lt = $(window).scrollTop();//обновляем переменную.
+	})
+
+	$(function(){//программирование бегунка с грывнами за объяснениями смотри готовые решения-> ползунки бегунки калькулятор
+		$("#grivn-slider").slider({
+			range: "min",
+			value: 5000,
+			min: 200,
+			max: 15000,
+			step: 50,
+			slide: function(event, ui){
+				$('#grivn-amount').val(ui.value).trigger("change");
+			}
+		})
 	})
 })
 

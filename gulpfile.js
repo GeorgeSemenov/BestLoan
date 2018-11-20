@@ -42,9 +42,10 @@ gulp.task('brsyTask', function(){
 
 gulp.task('buildScripts', function(){
     return gulp.src([//Указываем объединяемые файлы
-        'node_modules/jquery/dist/jquery.min.js',
-        'node_modules/bootstrap/dist/js/bootstrap.min.js',
-        'node_modules/popper/dist/popper.min.js'
+        'node_modules/jquery/dist/jquery.min.js'
+        ,'node_modules/popper/dist/popper.min.js'
+        ,'node_modules/bootstrap/dist/js/bootstrap.min.js'
+        ,'node_modules/jquery-ui-dist/jquery-ui.min.js' //Для слайдера
     ])
     .pipe(concat('libs.min.js'))//Объединяемые файлы будут собранны в
     .pipe(uglify())//Сжимаем файлик libs.min.js
@@ -54,6 +55,7 @@ gulp.task('buildScripts', function(){
 gulp.task('buildCSS',['lessTask'],function(){
     return gulp.src([
         'node_modules/bootstrap/dist/css/bootstrap.min.css'
+        ,'node_modules/jquery-ui-dist/jquery-ui.min.css' //Для слайдера
     ])
     .pipe(concat('libs.min.css'))
     .pipe(cssnano())
