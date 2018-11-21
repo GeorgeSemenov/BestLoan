@@ -265,11 +265,35 @@ nav.navbar{
 .sort-screen{
     .search-data-container{
         .slider-container{
+            .left-calculation(@number-on-slider){
+                //Значения @min-slider-value и @max-slider-value будут указаны в .right-slider и .left-slider соответственно
+                @calculation : (@number-on-slider - @min-slider-value)/( @max-slider-value - @min-slider-value) * 100%;
+                left: @calculation;
+            }
             .right-slider{
+                //Значения для .left-calculation
+                @min-slider-value: 200;
+                @max-slider-value: 15000;
+
                 .slider-field{
+                    position: relative;
+
                     #grivn-slider{}
-                    .riska-container1, .riska-container2, .riska-container3, .riska-container4{
-                        positoin
+                    .riska-container1, .riska-container2, .riska-container3, .riska-container4, {
+                        position: absolute;
+                        border: 1px solid;
+                        @side: 10px;
+                        height: @side;
+                        width: @side;
+
+                        div{position: relative;}
+                    }
+                    .riska-container1{.left-calculation(200);}
+                    .riska-container2{.left-calculation(5000);}
+                    .riska-container3{.left-calculation(10000);}
+                    .riska-container4{.left-calculation(15000);}
+                    .riska{
+
                     }
                 }
             }
