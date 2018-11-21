@@ -35,9 +35,11 @@ $(document).ready(function(){
 			max: 15000,
 			step: 50,
 			slide: function(event, ui){
-				$('#grivn-amount').val(ui.value).trigger("change");
+				$('#grivn-amount').text(ui.value).trigger("change");
 			}
 		})
+		$('#grivn-amount').text("5000");
+		$('#grivn-amount').css('color','red');
 	})
 })
 

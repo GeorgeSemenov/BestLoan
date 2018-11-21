@@ -16,7 +16,9 @@
 .horizontal-ul - Список, который располагается по горизонтали(не миксина)
 .transition-property(@property-name) - задаёт кросбраузерно свойство за изменением которого нужно следить и при изменении которого нужно произвести анимацию(обычно идёт в связке с transition-duration).
     ВНИМАНИЕ при использовании этой миксины на одну строку выше этой mixin'ы @property-name: dummy-property(или любое другое значение); в противном случае будет вылезать ошибка @property-name undefined, я так и не нашёл причину этой проблемы.
-transition-duration (@duration)- Задаёт время время выполнения анимации (можно указывать как в секундах, так и просто числом)
+.transition-duration (@duration)- Задаёт время время выполнения анимации (можно указывать как в секундах, так и просто числом)
+.square(@side) - задаёт width и height одинаковую ширину
+.centered() - центрует по горизотали текст или блок, неважно.
 */
 @sm: 576px;
 @md: 768px;
@@ -253,4 +255,16 @@ a.my-anchor{
   -o-transition-duration: @s + @duration;   
   -ms-transition-duration: @s + @duration;
   transition-duration: @s + @duration;
+}
+
+.square(@side: 25px){
+    width: @side;
+    height: @side;
+}
+.centered(){
+    left: 50%;
+    transform: translateX(-50%);
+}
+.centered{
+    .centered();
 }

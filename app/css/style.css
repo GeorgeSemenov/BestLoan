@@ -16,7 +16,9 @@
 .horizontal-ul - Список, который располагается по горизонтали(не миксина)
 .transition-property(@property-name) - задаёт кросбраузерно свойство за изменением которого нужно следить и при изменении которого нужно произвести анимацию(обычно идёт в связке с transition-duration).
     ВНИМАНИЕ при использовании этой миксины на одну строку выше этой mixin'ы @property-name: dummy-property(или любое другое значение); в противном случае будет вылезать ошибка @property-name undefined, я так и не нашёл причину этой проблемы.
-transition-duration (@duration)- Задаёт время время выполнения анимации (можно указывать как в секундах, так и просто числом)
+.transition-duration (@duration)- Задаёт время время выполнения анимации (можно указывать как в секундах, так и просто числом)
+.square(@side) - задаёт width и height одинаковую ширину
+.centered() - центрует по горизотали текст или блок, неважно.
 */
 .textr {
   text-align: right;
@@ -156,6 +158,12 @@ a.my-anchor:hover {
 a.my-anchor:active {
   text-decoration: none;
   color: inherit;
+}
+.centered {
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
 @font-face {
   font-family: 'coolvetica';
@@ -327,18 +335,6 @@ a {
 }
 body .container {
   font-family: coolvetica;
-}
-.ui-widget-content {
-  background: #6b6b6b;
-  border-color: #6b6b6b;
-}
-.ui-slider-handle {
-  background: #c1c2c4;
-  -webkit-border-radius: 0.6em;
-          border-radius: 0.6em;
-}
-.ui-slider-range {
-  background: #34a3db;
 }
 nav.navbar {
   background: -webkit-gradient(linear, left top, right top, from(#5561a9), to(#73c6f0));
@@ -627,6 +623,36 @@ nav.navbar .container ul.navMenu {
     margin-bottom: 0;
   }
 }
+.sort-screen .search-data-container .ui-widget-content {
+  background: -webkit-gradient(linear, left top, right top, from(#dcdcdc), to(#a6a6a6));
+  background: -webkit-linear-gradient(left, #dcdcdc, #a6a6a6);
+  background: -o-linear-gradient(left, #dcdcdc, #a6a6a6);
+  background: linear-gradient(90deg, #dcdcdc, #a6a6a6);
+  border-color: #6b6b6b;
+}
+.sort-screen .search-data-container .ui-slider-handle {
+  background: #73c6f2;
+  -webkit-border-radius: 0.6em;
+          border-radius: 0.6em;
+  width: 1.3em;
+  height: 1.3em;
+}
+.sort-screen .search-data-container .ui-slider-range {
+  background: #73c6f2;
+  z-index: 0;
+}
+.sort-screen .search-data-container .slider-container {
+  cursor: default;
+  background-color: #fff;
+}
+.sort-screen .search-data-container .slider-container input#grivn-amount {
+  border: 0;
+  background-color: #fff;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+      user-select: none;
+}
 .sort-screen .search-data-container .slider-container .right-slider .slider-field {
   position: relative;
 }
@@ -635,15 +661,9 @@ nav.navbar .container ul.navMenu {
 .sort-screen .search-data-container .slider-container .right-slider .slider-field .riska-container3,
 .sort-screen .search-data-container .slider-container .right-slider .slider-field .riska-container4 {
   position: absolute;
-  border: 1px solid;
-  height: 10px;
-  width: 10px;
-}
-.sort-screen .search-data-container .slider-container .right-slider .slider-field .riska-container1 div,
-.sort-screen .search-data-container .slider-container .right-slider .slider-field .riska-container2 div,
-.sort-screen .search-data-container .slider-container .right-slider .slider-field .riska-container3 div,
-.sort-screen .search-data-container .slider-container .right-slider .slider-field .riska-container4 div {
-  position: relative;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
 .sort-screen .search-data-container .slider-container .right-slider .slider-field .riska-container1 {
   left: 0%;
@@ -656,4 +676,19 @@ nav.navbar .container ul.navMenu {
 }
 .sort-screen .search-data-container .slider-container .right-slider .slider-field .riska-container4 {
   left: 100%;
+}
+.sort-screen .search-data-container .slider-container .right-slider .slider-field .riska {
+  z-index: 10;
+  top: -17px;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+  height: 20px;
+  border-left: 1px solid red;
+  bottom: 10px;
+}
+.sort-screen .search-data-container .slider-container .right-slider .slider-field .riska-text {
+  font-weight: 200;
 }

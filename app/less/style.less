@@ -41,17 +41,7 @@ body{
     }
 }
 @navbar-height: 62px;   
-.ui-widget-content{
-    background: #6b6b6b;
-    border-color: #6b6b6b;
-}
-.ui-slider-handle {
-    background: #c1c2c4;
-    border-radius: 0.6em;
-}
-.ui-slider-range {
-    background: #34a3db;
-}
+
 nav.navbar{
     .gradient();
     box-shadow: 0 0 20px rgba(0,0,0,0.2);
@@ -263,8 +253,38 @@ nav.navbar{
 }
 
 .sort-screen{
+    
     .search-data-container{
+        
+        //Стили слайдера
+        @main-color: #73c6f2;
+        .ui-widget-content{//Полоса слайдера целиком (по ней бегунок бегает)
+            background: linear-gradient(90deg, #dcdcdc, #a6a6a6);
+            border-color: #6b6b6b;
+        }
+        .ui-slider-handle {//Сам бегунок
+            background: @main-color;
+            border-radius: 0.6em;
+            .square(1.3em);
+        }
+        .ui-slider-range {//Полоса заполнения (от левого края до бегунка)
+            background: @main-color;
+            z-index: 0;
+        }
+
+
         .slider-container{
+            @background-color: #fff;
+            cursor: default;
+            background-color: @background-color;
+
+            //cтили инпутов
+            input#grivn-amount{
+                border: 0;
+                background-color: @background-color;
+                .unselectable();
+            }
+
             .left-calculation(@number-on-slider){
                 //Значения @min-slider-value и @max-slider-value будут указаны в .right-slider и .left-slider соответственно
                 @calculation : (@number-on-slider - @min-slider-value)/( @max-slider-value - @min-slider-value) * 100%;
@@ -281,20 +301,26 @@ nav.navbar{
                     #grivn-slider{}
                     .riska-container1, .riska-container2, .riska-container3, .riska-container4, {
                         position: absolute;
-                        border: 1px solid;
-                        @side: 10px;
-                        height: @side;
-                        width: @side;
-
-                        div{position: relative;}
+                        transform: translateX(-50%);
                     }
-                    .riska-container1{.left-calculation(200);}
+                    .riska-container1{
+                        .left-calculation(200);
+
+                    }
                     .riska-container2{.left-calculation(5000);}
                     .riska-container3{.left-calculation(10000);}
                     .riska-container4{.left-calculation(15000);}
                     .riska{
-
+                        z-index: 10;
+                        top: -17px;
+                        position: absolute;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        height: 20px;
+                        border-left: 1px solid red;
+                        bottom: 10px;
                     }
+                    .riska-text{font-weight: 200;}
                 }
             }
         }
