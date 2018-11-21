@@ -28,9 +28,10 @@ $(document).ready(function(){
 	})
 
 	$(function(){//программирование бегунка с грывнами за объяснениями смотри готовые решения-> ползунки бегунки калькулятор
+		var initialValue = 5000;
 		$("#grivn-slider").slider({
 			range: "min",
-			value: 5000,
+			value: initialValue,
 			min: 200,
 			max: 15000,
 			step: 50,
@@ -38,8 +39,7 @@ $(document).ready(function(){
 				$('#grivn-amount').text(ui.value).trigger("change");
 			}
 		})
-		$('#grivn-amount').text("5000");
-		$('#grivn-amount').css('color','red');
+		$('#grivn-amount').text(initialValue);
 	})
 })
 

@@ -18,7 +18,7 @@
     ВНИМАНИЕ при использовании этой миксины на одну строку выше этой mixin'ы @property-name: dummy-property(или любое другое значение); в противном случае будет вылезать ошибка @property-name undefined, я так и не нашёл причину этой проблемы.
 .transition-duration (@duration)- Задаёт время время выполнения анимации (можно указывать как в секундах, так и просто числом)
 .square(@side) - задаёт width и height одинаковую ширину
-.centered() - центрует по горизотали текст или блок, неважно.
+.centered() - центрует по горизотали текст или блок относительно родителя.
 */
 .textr {
   text-align: right;
@@ -160,6 +160,7 @@ a.my-anchor:active {
   color: inherit;
 }
 .centered {
+  position: absolute;
   left: 50%;
   -webkit-transform: translateX(-50%);
       -ms-transform: translateX(-50%);
@@ -623,12 +624,17 @@ nav.navbar .container ul.navMenu {
     margin-bottom: 0;
   }
 }
+.sort-screen .search-data-container {
+  font-family: trueno;
+}
 .sort-screen .search-data-container .ui-widget-content {
   background: -webkit-gradient(linear, left top, right top, from(#dcdcdc), to(#a6a6a6));
   background: -webkit-linear-gradient(left, #dcdcdc, #a6a6a6);
   background: -o-linear-gradient(left, #dcdcdc, #a6a6a6);
   background: linear-gradient(90deg, #dcdcdc, #a6a6a6);
   border-color: #6b6b6b;
+  -webkit-border-radius: 0;
+          border-radius: 0;
 }
 .sort-screen .search-data-container .ui-slider-handle {
   background: #73c6f2;
@@ -636,22 +642,30 @@ nav.navbar .container ul.navMenu {
           border-radius: 0.6em;
   width: 1.3em;
   height: 1.3em;
+  outline: none;
 }
 .sort-screen .search-data-container .ui-slider-range {
   background: #73c6f2;
+  -webkit-border-radius: 0;
+          border-radius: 0;
   z-index: 0;
 }
 .sort-screen .search-data-container .slider-container {
   cursor: default;
   background-color: #fff;
 }
-.sort-screen .search-data-container .slider-container input#grivn-amount {
-  border: 0;
-  background-color: #fff;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-      user-select: none;
+.sort-screen .search-data-container .slider-container .right-slider,
+.sort-screen .search-data-container .slider-container .left-slider {
+  width: 320px;
+}
+.sort-screen .search-data-container .slider-container .right-slider .grivn-amount-container {
+  display: inline-block;
+  width: 50px;
+  color: #71c5f3;
+  position: relative ;
+}
+.sort-screen .search-data-container .slider-container .right-slider .grivn-amount-container #grivn-amount {
+  border-bottom: 1px solid #71c5f3;
 }
 .sort-screen .search-data-container .slider-container .right-slider .slider-field {
   position: relative;
@@ -668,14 +682,22 @@ nav.navbar .container ul.navMenu {
 .sort-screen .search-data-container .slider-container .right-slider .slider-field .riska-container1 {
   left: 0%;
 }
+.sort-screen .search-data-container .slider-container .right-slider .slider-field .riska-container1 .riska {
+  border-width: 2px;
+}
 .sort-screen .search-data-container .slider-container .right-slider .slider-field .riska-container2 {
   left: 32.43243243%;
+  color: #bcbcbc;
 }
 .sort-screen .search-data-container .slider-container .right-slider .slider-field .riska-container3 {
   left: 66.21621622%;
+  color: #bcbcbc;
 }
 .sort-screen .search-data-container .slider-container .right-slider .slider-field .riska-container4 {
   left: 100%;
+}
+.sort-screen .search-data-container .slider-container .right-slider .slider-field .riska-container4 .riska {
+  border-width: 2px;
 }
 .sort-screen .search-data-container .slider-container .right-slider .slider-field .riska {
   z-index: 10;
@@ -686,7 +708,7 @@ nav.navbar .container ul.navMenu {
       -ms-transform: translateX(-50%);
           transform: translateX(-50%);
   height: 20px;
-  border-left: 1px solid red;
+  border-left: 1px solid #babab8;
   bottom: 10px;
 }
 .sort-screen .search-data-container .slider-container .right-slider .slider-field .riska-text {
