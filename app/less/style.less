@@ -215,20 +215,28 @@ nav.navbar{
         }
     }
 }
+@diffussion-measure: 84px;
 .first-screen{
     color: #fff;
     padding-top: @navbar-height;
+    @media(min-width: @lg) { padding-bottom: @diffussion-measure;}
+    @media(max-width: @lg - 1) { padding-bottom: @diffussion-measure/2;}
     .gradient();
     .container{text-align: center;}
     .header-container{
         @media(min-width: @lg) { max-width: 872px;}
+        @media(min-width: @lg) { margin-top: 40px;}
+        @media(max-width: @lg - 1) { margin-top: 15px}
     }
     .offer-container{
+        padding-bottom: 24px;
         @media(min-width: @lg) { 
             max-width: 738px;
             display: flex;
             justify-content: space-between;
+            margin-top: 20px;
         }
+        @media(max-width: @lg - 1) { margin-top: 10px}
 
         .column{
             @media(min-width: @lg) { width: 190px;}
@@ -256,7 +264,9 @@ nav.navbar{
 
     .search-data-container{
         font-family: trueno;
-        
+        position: relative;
+        top: -@diffussion-measure;
+
         //Стили слайдера
         @main-color: #73c6f2;
         .ui-widget-content{//Полоса слайдера целиком (по ней бегунок бегает)
@@ -282,7 +292,16 @@ nav.navbar{
             cursor: default;
             background-color: @background-color;
             display: flex;
-            justify-content: space-around;
+            @media(min-width: @sm) { 
+                justify-content: space-around;
+                padding-top: 30px;
+                padding-bottom: 66px;
+            }
+            @media(max-width: @sm - 1) { 
+                flex-direction: column;
+                height: 180px;
+                align-items: center;
+            }
 
             .left-calculation(@number-on-slider){
                 //Значения @min-slider-value и @max-slider-value будут указаны в для левого и правого слайдеров соответственно
@@ -290,7 +309,9 @@ nav.navbar{
                 left: @calculation;
             }
             .slider{
-                width: 320px;
+                @media(max-width: @sm - 1) { width: 300px;}
+                @media(min-width: @sm) { width: 225px;}
+                @media(min-width: @lg) { width: 320px;}
 
                 .amount-container{
                     @color:#71c5f3;
@@ -323,7 +344,6 @@ nav.navbar{
                     }
                     .riska-text{font-weight: 200;}
                 }
-
             }
 
             .left-slider{

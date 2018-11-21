@@ -18,10 +18,8 @@ $(document).ready(function(){
 		var st = $(window).scrollTop();
 		// alert('st = ' + st + ' lt = ' + lt + ' isItMobileTime = ' + isItMobileTime + ' (st > lt) and isItMobileTime = ' + ((st > lt) || isItMobileTime));
 		if((st > lt) && isItMobileTime) {
-			console.log("downscroll code");
 			$('.navbar').stop(true).fadeOut();
 		}else{
-			console.log("upscroll code");
 			$('.navbar').stop(true).fadeIn();
 		}
 		lt = $(window).scrollTop();//обновляем переменную.
@@ -52,18 +50,3 @@ function setSlider(initialValue,sliderName,sMin,sMax,sStep,amountName){//про�
 	})
 	$(amountName).text(initialValue);
 }
-
-// function setSlider(initialValue,sliderName,min,max,step,amountName){//программирование бегунка с рисками за объяснениями смотри готовые решения-> ползунки бегунки калькулятор
-// 	var initialValue = 5000;
-// 	$("#grivn-slider").slider({
-// 		range: "min",
-// 		value: initialValue,
-// 		min: 200,
-// 		max: 15000,
-// 		step: 50,
-// 		slide: function(event, ui){
-// 			$('#grivn-amount').text(ui.value).trigger("change");
-// 		}
-// 	})
-// 	$('#grivn-amount').text(initialValue);
-// }
