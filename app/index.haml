@@ -64,11 +64,11 @@
     .sort-screen
       .container.search-data-container
         .slider-container
-          .right-slider.my-auto
+          .slider.left-slider.my-auto
             %p
               %label(for="grivn-amount") СУММА ЗАЙМА 
-              %span.grivn-amount-container.textc
-                %span#grivn-amount
+              %span.amount-container.textc
+                %span.amount#grivn-amount
               %label(for="grivn-amount") ГРН
             .slider-field
               #grivn-slider
@@ -83,6 +83,26 @@
                 .riska
               .riska-container4
                 .riska-text 15,000
+                .riska
+          .slider.rigth-slider.my-auto
+            %p
+              %label(for="days-amount") НА СРОК
+              %span.amount-container.textc
+                %span.amount#days-amount
+              %label(for="days-amount") ДНЕЙ
+            .slider-field
+              #days-slider
+              .riska-container1
+                .riska-text 1
+                .riska
+              .riska-container2
+                .riska-text 10
+                .riska
+              .riska-container3
+                .riska-text 20
+                .riska
+              .riska-container4
+                .riska-text 30
                 .riska
       .container.search-results  
     %script(src="js/libs.min.js")

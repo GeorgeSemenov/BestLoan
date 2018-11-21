@@ -281,54 +281,36 @@ nav.navbar{
             @background-color: #fff;
             cursor: default;
             background-color: @background-color;
+            display: flex;
+            justify-content: space-around;
 
             .left-calculation(@number-on-slider){
-                //Значения @min-slider-value и @max-slider-value будут указаны в .right-slider и .left-slider соответственно
+                //Значения @min-slider-value и @max-slider-value будут указаны в для левого и правого слайдеров соответственно
                 @calculation : (@number-on-slider - @min-slider-value)/( @max-slider-value - @min-slider-value) * 100%;
                 left: @calculation;
             }
-            .right-slider , .left-slider{width: 320px;}
-            .right-slider{
-                //Значения для .left-calculation
-                @min-slider-value: 200;
-                @max-slider-value: 15000;
+            .slider{
+                width: 320px;
 
-                .grivn-amount-container{
+                .amount-container{
                     @color:#71c5f3;
                     display: inline-block;
                     width: 50px;
                     color: @color;
                     position: relative ;
 
-                    #grivn-amount{
-                        border-bottom: 1px solid @color;
-                    }
+                    .amount{border-bottom: 1px solid @color;}
                 }
 
                 .slider-field{
                     position: relative;
 
-                    #grivn-slider{}
                     .riska-container1, .riska-container2, .riska-container3, .riska-container4, {
                         position: absolute;
                         transform: translateX(-50%);
                     }
-                    .riska-container1{
-                        .left-calculation(200);
-                        .riska{border-width: 2px;}
-                    }
-                    .riska-container2{
-                        .left-calculation(5000);
-                        color: #bcbcbc;
-                    }
-                    .riska-container3{
-                        .left-calculation(10000);
-                        color: #bcbcbc;
-                    }
-                    .riska-container4{
-                        .left-calculation(15000);
-                        .riska{border-width: 2px;}
-                    }
+                    .riska-container1, .riska-container4{.riska{border-width: 2px;}}
+                    .riska-container2, .riska-container3{color: #bcbcbc;}
                     .riska{
                         z-index: 10;
                         top: -17px;
@@ -341,6 +323,26 @@ nav.navbar{
                     }
                     .riska-text{font-weight: 200;}
                 }
+
+            }
+
+            .left-slider{
+                //Значения для .left-calculation
+                @min-slider-value: 200;
+                @max-slider-value: 15000;
+                .riska-container1{.left-calculation(200);}
+                .riska-container2{.left-calculation(5000);}
+                .riska-container3{.left-calculation(10000);}
+                .riska-container4{.left-calculation(15000);}
+            }
+            .right-slider{
+                //Значения для .left-calculation
+                @min-slider-value: 1;
+                @max-slider-value: 30;
+                .riska-container1{.left-calculation(1);}
+                .riska-container2{.left-calculation(10);}
+                .riska-container3{.left-calculation(20);}
+                .riska-container4{.left-calculation(30);}
             }
         }
     }

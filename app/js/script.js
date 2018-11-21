@@ -27,20 +27,10 @@ $(document).ready(function(){
 		lt = $(window).scrollTop();//обновляем переменную.
 	})
 
-	$(function(){//программирование бегунка с грывнами за объяснениями смотри готовые решения-> ползунки бегунки калькулятор
-		var initialValue = 5000;
-		$("#grivn-slider").slider({
-			range: "min",
-			value: initialValue,
-			min: 200,
-			max: 15000,
-			step: 50,
-			slide: function(event, ui){
-				$('#grivn-amount').text(ui.value).trigger("change");
-			}
-		})
-		$('#grivn-amount').text(initialValue);
-	})
+	//Левый слайдер
+	setSlider(initialValue = 5000, sliderName = "#grivn-slider", sMin = 200, sMax = 15000, sStep = 50, amountName = '#grivn-amount');
+	//Правый слайдер
+	setSlider(initialValue = 10, sliderName = "#days-slider", sMin = 1, sMax = 30, sStep = 1, amountName = '#days-amount');
 })
 
 function isItMobileTimeFunc(){
@@ -48,3 +38,32 @@ function isItMobileTimeFunc(){
 	if($(window).width() <= 991){return true;}
 	else { return false;}
 }
+
+function setSlider(initialValue,sliderName,sMin,sMax,sStep,amountName){//программирование бегунка с рисками за объяснениями смотри готовые решения-> ползунки бегунки калькулятор
+	$(sliderName).slider({
+		range: "min",
+		value: initialValue,
+		min: sMin,
+		max: sMax,
+		step: sStep,
+		slide: function(event, ui){
+			$(amountName).text(ui.value).trigger("change");
+		}
+	})
+	$(amountName).text(initialValue);
+}
+
+// function setSlider(initialValue,sliderName,min,max,step,amountName){//программирование бегунка с рисками за объяснениями смотри готовые решения-> ползунки бегунки калькулятор
+// 	var initialValue = 5000;
+// 	$("#grivn-slider").slider({
+// 		range: "min",
+// 		value: initialValue,
+// 		min: 200,
+// 		max: 15000,
+// 		step: 50,
+// 		slide: function(event, ui){
+// 			$('#grivn-amount').text(ui.value).trigger("change");
+// 		}
+// 	})
+// 	$('#grivn-amount').text(initialValue);
+// }
