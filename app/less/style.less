@@ -419,11 +419,16 @@ nav.navbar{
                 .centeredY(@top: @sort-tools-height/2);
                 .square(@sort-tools-height - 10);
                 right: 5px;
+                .transition(.3; 0; linear);
+                 @property-name: dummy-property;//Нужно для работы миксины .transition-property
+                .transition-property(transform);
+                // transform: rotate(0);
             }
             .text-for-gear, .gear, .dropdown a{
                 .unselectable();
                 cursor: pointer;
             }
+            .rotated{transform: translateY(-50%) rotate(-180deg);}
         }
 
         .search-results{

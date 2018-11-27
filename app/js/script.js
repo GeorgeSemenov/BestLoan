@@ -32,8 +32,10 @@ $(document).ready(function(){
 
 	//Активация шестерни и выдвиганию списка инструментов сортировки 
 	var $activator = $('.gear, .text-for-gear');
+	var $gear = $('.gear');
 	var $hiddenPannel = $('.sort-lists , .sortirovka');
 	$activator.click(function(){
+		$gear.toggleClass('rotated');
 		console.log("clicked");
 		if($hiddenPannel.css('display') == 'none'){
 			console.log("display was none");

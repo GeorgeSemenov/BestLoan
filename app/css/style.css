@@ -991,6 +991,17 @@ nav.navbar .container ul.navMenu {
   width: 40px;
   height: 40px;
   right: 5px;
+  transition: 0.3s linear 0s;
+  -moz-transition: 0.3s linear 0s;
+  -webkit-transition: 0.3s linear 0s;
+  -o-transition: 0.3s linear 0s;
+  -webkit-transition-property: -webkit-transform;
+  /* Будет отслеживать изменение background-color, для создания эффекта длиной в 0.3s (см ниже)*/
+  -o-transition-property: -o-transform;
+  transition-property: -webkit-transform;
+  -o-transition-property: transform;
+  transition-property: transform;
+  transition-property: transform, -webkit-transform;
 }
 .sort-screen .search-data-container .sort-tools .text-for-gear,
 .sort-screen .search-data-container .sort-tools .gear,
@@ -1000,6 +1011,11 @@ nav.navbar .container ul.navMenu {
   -ms-user-select: none;
       user-select: none;
   cursor: pointer;
+}
+.sort-screen .search-data-container .sort-tools .rotated {
+  -webkit-transform: translateY(-50%) rotate(-180deg);
+      -ms-transform: translateY(-50%) rotate(-180deg);
+          transform: translateY(-50%) rotate(-180deg);
 }
 .sort-screen .search-data-container .search-results {
   z-index: -1;
