@@ -29,6 +29,21 @@ $(document).ready(function(){
 	setSlider(initialValue = 5000, sliderName = "#grivn-slider", sMin = 200, sMax = 15000, sStep = 50, amountName = '#grivn-amount');
 	//Правый слайдер
 	setSlider(initialValue = 10, sliderName = "#days-slider", sMin = 1, sMax = 30, sStep = 1, amountName = '#days-amount');
+
+	//Активация шестерни и выдвиганию списка инструментов сортировки 
+	var $activator = $('.gear, .text-for-gear');
+	var $hiddenPannel = $('.sort-lists , .sortirovka');
+	$activator.click(function(){
+		console.log("clicked");
+		if($hiddenPannel.css('display') == 'none'){
+			console.log("display was none");
+			$hiddenPannel.slideDown('normal');
+		}else{
+			console.log("display was visible");
+			$hiddenPannel.slideUp('normal');
+		}
+	})
+
 })
 
 function isItMobileTimeFunc(){

@@ -18,7 +18,12 @@
     ВНИМАНИЕ при использовании этой миксины на одну строку выше этой mixin'ы @property-name: dummy-property(или любое другое значение); в противном случае будет вылезать ошибка @property-name undefined, я так и не нашёл причину этой проблемы.
 .transition-duration (@duration)- Задаёт время время выполнения анимации (можно указывать как в секундах, так и просто числом)
 .square(@side) - задаёт width и height одинаковую ширину
-.centered() - центрует по горизотали текст или блок относительно родителя.
+.centeredX( @transLeft: -50%; @left: 50% ) - центрует по горизотали текст или блок относительно родителя.
+.centeredY( @transTop: -50%; @top: 50%) - центрует по вертикали текст или блок относительно родителя.
+.centered( @transLeft: -50%; @transTop: -50%; @top: 50%; @left: 50%) - центрует по горизотали и вертикали текст или блок относительно родителя.
+.bordered() - задаёт границу красного цвета.
+.anchornless() - Убирает все стили по умолчанию у ссылки.
+.my-auto()
 */
 @sm: 576px;
 @md: 768px;
@@ -261,11 +266,45 @@ a.my-anchor{
     width: @side;
     height: @side;
 }
-.centered(){
+.centeredX(@transLeft: -50%; @left: 50%){
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    left: @left;
+    transform: translateX(@transLeft);
 }
-.centered{
-    .centered();
+.centeredX{.centeredX();}
+.centeredY(@transTop: -50%; @top: 50%){
+    position: absolute;
+    top: @top;
+    transform: translateY(@transTop);
+}
+.centeredY{.centeredY();}
+.centered( @transLeft: -50% ; @transTop: -50%; @top: 50%; @left: 50%){
+    position: absolute;
+    top: @top;
+    left: @left;
+    transform: translate( @transLeft , @transTop);
+}
+.centered{.centered();}
+.bordered(){border: 2px solid red;}
+.bordered{.bordered();}
+.anchornless(){
+    &:link {
+        text-decoration: inherit;
+        color: inherit;
+        cursor: auto;
+    }
+    &:hover{
+        color:inherit;
+        text-decoration: inherit;
+    }
+    &:visited {
+        text-decoration: inherit;
+        color: inherit;
+        cursor: auto;
+    }
+}
+.anchornless{.anchornless();}
+.my-auto(){
+    margin-left: auto;
+    margin-right: auto;
 }

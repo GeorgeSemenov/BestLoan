@@ -18,7 +18,12 @@
     ВНИМАНИЕ при использовании этой миксины на одну строку выше этой mixin'ы @property-name: dummy-property(или любое другое значение); в противном случае будет вылезать ошибка @property-name undefined, я так и не нашёл причину этой проблемы.
 .transition-duration (@duration)- Задаёт время время выполнения анимации (можно указывать как в секундах, так и просто числом)
 .square(@side) - задаёт width и height одинаковую ширину
-.centered() - центрует по горизотали текст или блок относительно родителя.
+.centeredX( @transLeft: -50%; @left: 50% ) - центрует по горизотали текст или блок относительно родителя.
+.centeredY( @transTop: -50%; @top: 50%) - центрует по вертикали текст или блок относительно родителя.
+.centered( @transLeft: -50%; @transTop: -50%; @top: 50%; @left: 50%) - центрует по горизотали и вертикали текст или блок относительно родителя.
+.bordered() - задаёт границу красного цвета.
+.anchornless() - Убирает все стили по умолчанию у ссылки.
+.my-auto()
 */
 .textr {
   text-align: right;
@@ -159,12 +164,44 @@ a.my-anchor:active {
   text-decoration: none;
   color: inherit;
 }
-.centered {
+.centeredX {
   position: absolute;
   left: 50%;
   -webkit-transform: translateX(-50%);
       -ms-transform: translateX(-50%);
           transform: translateX(-50%);
+}
+.centeredY {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.bordered {
+  border: 2px solid red;
+}
+.anchornless:link {
+  text-decoration: inherit;
+  color: inherit;
+  cursor: auto;
+}
+.anchornless:hover {
+  color: inherit;
+  text-decoration: inherit;
+}
+.anchornless:visited {
+  text-decoration: inherit;
+  color: inherit;
+  cursor: auto;
 }
 @font-face {
   font-family: 'coolvetica';
@@ -331,8 +368,43 @@ a.my-anchor:active {
     font-size: 18.3px;
   }
 }
-a {
+a,
+.container a {
   outline: none;
+}
+a:link,
+.container a:link {
+  text-decoration: inherit;
+  color: inherit;
+  cursor: auto;
+}
+a:hover,
+.container a:hover {
+  color: inherit;
+  text-decoration: inherit;
+}
+a:visited,
+.container a:visited {
+  text-decoration: inherit;
+  color: inherit;
+  cursor: auto;
+}
+a:link,
+.container a:link {
+  text-decoration: inherit;
+  color: inherit;
+  cursor: auto;
+}
+a:hover,
+.container a:hover {
+  color: inherit;
+  text-decoration: inherit;
+}
+a:visited,
+.container a:visited {
+  text-decoration: inherit;
+  color: inherit;
+  cursor: auto;
 }
 body .container {
   font-family: coolvetica;
@@ -658,28 +730,33 @@ nav.navbar .container ul.navMenu {
   position: relative;
   top: -84px;
 }
-.sort-screen .search-data-container .ui-widget-content {
-  background: -webkit-gradient(linear, left top, right top, from(#dcdcdc), to(#a6a6a6));
-  background: -webkit-linear-gradient(left, #dcdcdc, #a6a6a6);
-  background: -o-linear-gradient(left, #dcdcdc, #a6a6a6);
-  background: linear-gradient(90deg, #dcdcdc, #a6a6a6);
-  border-color: #6b6b6b;
-  -webkit-border-radius: 0;
-          border-radius: 0;
+.sort-screen .search-data-container a:link {
+  text-decoration: inherit;
+  color: inherit;
+  cursor: auto;
 }
-.sort-screen .search-data-container .ui-slider-handle {
-  background: #73c6f2;
-  -webkit-border-radius: 0.6em;
-          border-radius: 0.6em;
-  width: 1.3em;
-  height: 1.3em;
-  outline: none;
+.sort-screen .search-data-container a:hover {
+  color: inherit;
+  text-decoration: inherit;
 }
-.sort-screen .search-data-container .ui-slider-range {
-  background: #73c6f2;
-  -webkit-border-radius: 0;
-          border-radius: 0;
-  z-index: 0;
+.sort-screen .search-data-container a:visited {
+  text-decoration: inherit;
+  color: inherit;
+  cursor: auto;
+}
+.sort-screen .search-data-container a:link {
+  text-decoration: inherit;
+  color: inherit;
+  cursor: auto;
+}
+.sort-screen .search-data-container a:hover {
+  color: inherit;
+  text-decoration: inherit;
+}
+.sort-screen .search-data-container a:visited {
+  text-decoration: inherit;
+  color: inherit;
+  cursor: auto;
 }
 .sort-screen .search-data-container .slider-container {
   cursor: default;
@@ -688,6 +765,7 @@ nav.navbar .container ul.navMenu {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  margin-bottom: 15px;
 }
 @media (min-width: 576px) {
   .sort-screen .search-data-container .slider-container {
@@ -712,9 +790,32 @@ nav.navbar .container ul.navMenu {
             align-items: center;
   }
 }
+.sort-screen .search-data-container .slider-container .ui-widget-content {
+  background: -webkit-gradient(linear, left top, right top, from(#dcdcdc), to(#a6a6a6));
+  background: -webkit-linear-gradient(left, #dcdcdc, #a6a6a6);
+  background: -o-linear-gradient(left, #dcdcdc, #a6a6a6);
+  background: linear-gradient(90deg, #dcdcdc, #a6a6a6);
+  border-color: #6b6b6b;
+  -webkit-border-radius: 0;
+          border-radius: 0;
+}
+.sort-screen .search-data-container .slider-container .ui-slider-handle {
+  background: #73c6f2;
+  -webkit-border-radius: 0.6em;
+          border-radius: 0.6em;
+  width: 1.3em;
+  height: 1.3em;
+  outline: none;
+}
+.sort-screen .search-data-container .slider-container .ui-slider-range {
+  background: #73c6f2;
+  -webkit-border-radius: 0;
+          border-radius: 0;
+  z-index: 0;
+}
 @media (max-width: 575px) {
   .sort-screen .search-data-container .slider-container .slider {
-    width: 300px;
+    width: 225px;
   }
 }
 @media (min-width: 576px) {
@@ -794,4 +895,123 @@ nav.navbar .container ul.navMenu {
 }
 .sort-screen .search-data-container .slider-container .right-slider .riska-container4 {
   left: 100%;
+}
+.sort-screen .search-data-container .sort-tools {
+  background: -webkit-gradient(linear, left top, right top, from(#5561a9), to(#73c6f0));
+  background: -webkit-linear-gradient(left, #5561a9, #73c6f0);
+  background: -o-linear-gradient(left, #5561a9, #73c6f0);
+  background: linear-gradient(90deg, #5561a9, #73c6f0);
+  border: 1px solid transparent;
+  position: relative;
+}
+@media (min-width: 992px) {
+  .sort-screen .search-data-container .sort-tools {
+    height: 50px;
+  }
+}
+@media (max-width: 991px) {
+  .sort-screen .search-data-container .sort-tools {
+    min-height: 50px;
+  }
+}
+.sort-screen .search-data-container .sort-tools .lists-of-sort-tools {
+  position: relative;
+}
+@media (min-width: 992px) {
+  .sort-screen .search-data-container .sort-tools .lists-of-sort-tools {
+    width: 80%;
+  }
+}
+@media (max-width: 991px) {
+  .sort-screen .search-data-container .sort-tools .lists-of-sort-tools {
+    margin-top: 50px;
+  }
+}
+@media (max-width: 991px) {
+  .sort-screen .search-data-container .sort-tools .lists-of-sort-tools .dropdown {
+    margin-bottom: 10px;
+  }
+}
+.sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sort-lists {
+  position: relative;
+}
+@media (min-width: 992px) {
+  .sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sort-lists {
+    display: -webkit-box !important;
+    display: -webkit-flex !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    width: 420px;
+    position: absolute;
+    top: 25px;
+    -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+  }
+}
+@media (min-width: 992px) {
+  .sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sortirovka {
+    display: block !important;
+    right: 0;
+    position: absolute;
+    top: 25px;
+    -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+  }
+}
+@media (max-width: 991px) {
+  .sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sort-lists,
+  .sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sortirovka {
+    margin-left: auto;
+    margin-right: auto;
+    width: 150px;
+    display: none;
+  }
+}
+.sort-screen .search-data-container .sort-tools .text-for-gear {
+  width: 150px;
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.sort-screen .search-data-container .sort-tools .gear {
+  position: absolute;
+  top: 25px;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  right: 5px;
+}
+.sort-screen .search-data-container .sort-tools .text-for-gear,
+.sort-screen .search-data-container .sort-tools .gear,
+.sort-screen .search-data-container .sort-tools .dropdown a {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+      user-select: none;
+  cursor: pointer;
+}
+.sort-screen .search-data-container .search-results {
+  z-index: -1;
+  background-color: #fefefe;
+  position: relative;
+  height: 68px;
+}
+.sort-screen .search-data-container .search-results .search-results-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }

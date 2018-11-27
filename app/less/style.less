@@ -28,7 +28,7 @@
 p{
     .font-resp-style(@xs-sz: 16px; @md-sz: 16px; @lg-sz: 18.3px);
 }
-a{.outlineless();}
+a, .container a {.outlineless(); .anchornless();}
 
 @left-gradient-color: #5561a9;
 @right-gradient-color: #73c6f0;
@@ -263,35 +263,17 @@ nav.navbar{
 .sort-screen{
 
     .search-data-container{
+        a{.anchornless();}
         font-family: trueno;
         position: relative;
         top: -@diffussion-measure;
-
-        //Стили слайдера
-        @main-color: #73c6f2;
-        .ui-widget-content{//Полоса слайдера целиком (по ней бегунок бегает)
-            background: linear-gradient(90deg, #dcdcdc, #a6a6a6);
-            border-color: #6b6b6b;
-            border-radius: 0;
-        }
-        .ui-slider-handle {//Сам бегунок
-            background: @main-color;
-            border-radius: 0.6em;
-            .square(1.3em);
-            outline: none;
-        }
-        .ui-slider-range {//Полоса заполнения (от левого края до бегунка)
-            background: @main-color;
-            border-radius: 0;
-            z-index: 0;
-        }
-
 
         .slider-container{
             @background-color: #fff;
             cursor: default;
             background-color: @background-color;
             display: flex;
+            margin-bottom: 15px;
             @media(min-width: @sm) { 
                 justify-content: space-around;
                 padding-top: 30px;
@@ -303,13 +285,32 @@ nav.navbar{
                 align-items: center;
             }
 
+            //Стили слайдера
+            @main-color: #73c6f2;
+            .ui-widget-content{//Полоса слайдера целиком (по ней бегунок бегает)
+                background: linear-gradient(90deg, #dcdcdc, #a6a6a6);
+                border-color: #6b6b6b;
+                border-radius: 0;
+            }
+            .ui-slider-handle {//Сам бегунок
+                background: @main-color;
+                border-radius: 0.6em;
+                .square(1.3em);
+                outline: none;
+            }
+            .ui-slider-range {//Полоса заполнения (от левого края до бегунка)
+                background: @main-color;
+                border-radius: 0;
+                z-index: 0;
+            }
+
             .left-calculation(@number-on-slider){
                 //Значения @min-slider-value и @max-slider-value будут указаны в для левого и правого слайдеров соответственно
                 @calculation : (@number-on-slider - @min-slider-value)/( @max-slider-value - @min-slider-value) * 100%;
                 left: @calculation;
             }
             .slider{
-                @media(max-width: @sm - 1) { width: 300px;}
+                @media(max-width: @sm - 1) { width: 225px;}
                 @media(min-width: @sm) { width: 225px;}
                 @media(min-width: @lg) { width: 320px;}
 
@@ -365,5 +366,77 @@ nav.navbar{
                 .riska-container4{.left-calculation(30);}
             }
         }
+
+        .sort-tools{
+            @sort-tools-height: 50px;
+            @sort-list-width: 150px;
+            .gradient();
+            border: 1px solid transparent; // эта запись нужна, чтобы при выдвигании на мобилковости менюшки srot-lists не двигался сам sort-tools
+            position: relative;
+
+            @media(min-width: @lg) { height: @sort-tools-height;}
+            @media(max-width: @lg - 1) { min-height: @sort-tools-height;}
+
+            .lists-of-sort-tools{
+                position: relative;
+                @media(min-width: @lg) { width: 80%;}
+                @media(max-width: @lg - 1) { margin-top: @sort-tools-height;}
+
+                .dropdown{@media(max-width: @lg - 1) { margin-bottom: 10px;}}
+                .sort-lists{
+                    position:relative;
+
+                    @media(min-width: @lg) { 
+                        display: flex !important;
+                        justify-content: space-between;
+                        width: 420px;
+                        .centeredY(@top: @sort-tools-height/2);
+                    }
+                }
+                .sortirovka{
+                    @media(min-width: @lg) { 
+                        display: block !important;
+                        right: 0;
+                        .centeredY(@top: @sort-tools-height/2);
+                    }
+                }
+
+                .sort-lists , .sortirovka{
+                    @media(max-width: @lg - 1) { 
+                        .my-auto();
+                        width: @sort-list-width;
+                        display: none;
+                    }
+
+                }
+            }
+            .text-for-gear{
+                width: @sort-list-width;
+                .centered(@top: @sort-tools-height/2;)
+
+            }
+            .gear{
+                .centeredY(@top: @sort-tools-height/2);
+                .square(@sort-tools-height - 10);
+                right: 5px;
+            }
+            .text-for-gear, .gear, .dropdown a{
+                .unselectable();
+                cursor: pointer;
+            }
+        }
+
+        .search-results{
+            z-index: -1;
+            background-color: #fefefe;
+            position: relative;
+            @search-results-height: 68px;
+            height: @search-results-height;
+
+            .search-results-text{
+                .centered();
+            }
+        }
     }
+
 }

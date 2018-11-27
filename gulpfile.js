@@ -13,6 +13,7 @@ var gulp = require('gulp'),
     mozjpeg = require('imagemin-mozjpeg'),
     responsive = require('gulp-responsive-images'),
     cache = require('gulp-cache'),//Для кэширования изображений.
+    gulpIgnore = require('gulp-ignore'),//Для игнорирования маппинга в процессе gulp-uglify
     autoprefixer = require('gulp-autoprefixer');//Эта штуковина будет добавлять автоматически вендорные приставки к свойствам css, вроде -webkit-flex, -moz-flex и т.п.
 
 gulp.task('default',['watcher']);
@@ -43,7 +44,7 @@ gulp.task('brsyTask', function(){
 gulp.task('buildScripts', function(){
     return gulp.src([//Указываем объединяемые файлы
         'node_modules/jquery/dist/jquery.min.js'
-        ,'node_modules/popper/dist/popper.min.js'
+        ,'node_modules/popper.js/dist/popper.min.js'
         ,'node_modules/bootstrap/dist/js/bootstrap.min.js'
         ,'node_modules/jquery-ui-dist/jquery-ui.min.js' //Для слайдера
     ])

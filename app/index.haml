@@ -104,6 +104,50 @@
               .riska-container4
                 .riska-text 30
                 .riska
-      .container.search-results  
+        .sort-tools
+          .lists-of-sort-tools.mx-auto
+            .sort-lists
+              .dropdown
+                %a.dropdown-toggle(data-toggle="dropdown" href="#!")
+                  МОЙ ГОРОД
+                .dropdown-menu(aria-labelledby="dropdownMenuLink")
+                  %a.dropdown-item(href="#!") Харьков
+                  %a.dropdown-item(href="#!") Киев
+                  %a.dropdown-item(href="#!") Харьков
+                  %a.dropdown-item(href="#!") Киев
+                  %a.dropdown-item(href="#!") Харьков
+              .dropdown
+                %a.dropdown-toggle(data-toggle="dropdown" href="#!")
+                  РОД ЗАНЯТИЙ
+                .dropdown-menu(aria-labelledby="dropdownMenuLink")
+                  %a.dropdown-item(href="#!") Разнорабочий
+                  %a.dropdown-item(href="#!") Безработный
+                  %a.dropdown-item(href="#!") Самозанятый
+                  %a.dropdown-item(href="#!") Предприниматель
+                  %a.dropdown-item(href="#!") Ниндзя
+              .dropdown
+                %a.dropdown-toggle(data-toggle="dropdown" href="#!")
+                  ВИД ЗАЙМА
+                .dropdown-menu(aria-labelledby="dropdownMenuLink")
+                  %a.dropdown-item(href="#!") Безпроцентный
+                  %a.dropdown-item(href="#!") Процентный
+            .dropdown.sortirovka
+              %a.dropdown-toggle(data-toggle="dropdown" href="#!")
+                СОРТИРОВКА
+              .dropdown-menu(aria-labelledby="dropdownMenuLink")
+                %a.dropdown-item(href="#!") По имени
+                %a.dropdown-item(href="#!") По дате
+                %a.dropdown-item(href="#!") По месту жительства 
+          %span.d-lg-none.text-for-gear Опции сортировки
+          .gear.d-lg-none
+            %picture
+              %source(media="(min-width: 1200px)" srcset="img/sortScreen/gear-1200.png")
+              %source(media="(min-width: 992px)" srcset="img/sortScreen/gear-992.png")
+              %source(media="(min-width: 768px)" srcset="img/sortScreen/gear-768.png")
+              %source(media="(min-width: 576px)" srcset="img/sortScreen/gear-576.png")
+              %source(media="(max-width: 575px)" srcset="img/sortScreen/gear-576.png")
+              %img.w-100(alt="gear" src="img/sortScreen/gear.png")           
+        .search-results
+          %p.search-results-text Результаты, не соответствующие условиям поиска
     %script(src="js/libs.min.js")
     %script(src="js/script.js")
