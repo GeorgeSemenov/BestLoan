@@ -370,7 +370,7 @@ nav.navbar{
 
         .sort-tools{
             @sort-tools-height: 50px;
-            @sort-list-width: 150px;
+            @sort-list-width: 165px;
             .gradient();
             border: 1px solid transparent; // эта запись нужна, чтобы при выдвигании на мобилковости менюшки srot-lists не двигался сам sort-tools
             position: relative;
@@ -393,7 +393,6 @@ nav.navbar{
                     }
                 }
                 .sort-lists{
-                    position:relative;
 
                     @media(min-width: @lg) { 
                         display: flex !important;
@@ -410,10 +409,16 @@ nav.navbar{
                         .centeredY(@top: @sort-tools-height/2);
                     }
                     @media(max-width: @lg - 1) { margin-bottom: 10px;}
+
+                    .dropdown-menu{float: none;}
                 }
 
                 .sort-lists , .sortirovka{
-                    @media(max-width: @lg - 1) { display: none;}
+                    
+                    @media(max-width: @lg - 1) { 
+                        display: none;
+                        position: relative;
+                    }
 
                     .dropdown-toggle{
                         width: @sort-list-width;

@@ -945,9 +945,6 @@ nav.navbar .container ul.navMenu {
     position: relative !important;
   }
 }
-.sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sort-lists {
-  position: relative;
-}
 @media (min-width: 992px) {
   .sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sort-lists {
     display: -webkit-box !important;
@@ -987,15 +984,19 @@ nav.navbar .container ul.navMenu {
     margin-bottom: 10px;
   }
 }
+.sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sortirovka .dropdown-menu {
+  float: none;
+}
 @media (max-width: 991px) {
   .sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sort-lists,
   .sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sortirovka {
     display: none;
+    position: relative;
   }
 }
 .sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sort-lists .dropdown-toggle,
 .sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sortirovka .dropdown-toggle {
-  width: 150px;
+  width: 165px;
   color: #fff;
 }
 @media (max-width: 991px) {
@@ -1027,14 +1028,14 @@ nav.navbar .container ul.navMenu {
 @media (max-width: 991px) {
   .sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sort-lists .dropdown-menu .dropdown-item,
   .sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sortirovka .dropdown-menu .dropdown-item {
-    width: 150px;
+    width: 165px;
     margin-left: auto;
     margin-right: auto;
   }
 }
 .sort-screen .search-data-container .sort-tools .text-for-gear {
   color: #fff;
-  width: 150px;
+  width: 165px;
   position: absolute;
   top: 25px;
   left: 50%;
