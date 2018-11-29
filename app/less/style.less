@@ -148,6 +148,7 @@ nav.navbar{
 
             @media(min-width: @lg) { 
                 margin-top: 10px;
+                transition: 0;
 
                 li{
                     margin-top: -2px;
@@ -382,12 +383,21 @@ nav.navbar{
                 @media(min-width: @lg) { width: 80%;}
                 @media(max-width: @lg - 1) { margin-top: @sort-tools-height;}
 
-                .dropdown{@media(max-width: @lg - 1) { margin-bottom: 10px;}}
+                .dropdown{
+                    @media(max-width: @lg - 1) { margin-bottom: 10px;}
+
+                    .show{
+                        @media(max-width: @lg - 1) { 
+                            position:relative !important;
+                        }
+                    }
+                }
                 .sort-lists{
                     position:relative;
 
                     @media(min-width: @lg) { 
                         display: flex !important;
+                        flex-direction: row;
                         justify-content: space-between;
                         width: 420px;
                         .centeredY(@top: @sort-tools-height/2);
@@ -397,6 +407,7 @@ nav.navbar{
                     @media(min-width: @lg) { 
                         display: block !important;
                         right: 0;
+                        margin-bottom: 10px;
                         .centeredY(@top: @sort-tools-height/2);
                     }
                 }
@@ -404,10 +415,33 @@ nav.navbar{
                 .sort-lists , .sortirovka{
                     @media(max-width: @lg - 1) { 
                         .my-auto();
-                        width: @sort-list-width;
                         display: none;
                     }
 
+                    .dropdown-toggle{
+                        width: @sort-list-width;
+
+                        @media(max-width: @lg - 1) {
+                            position: relative;
+                            display: block;
+                            .mx-auto();
+                        }
+                    }
+
+                    .dropdown-menu{
+                        @media(min-width: @lg) { .px(12px);}
+                        .dropdown-item{
+                            border-bottom: 1px solid #e4e4e4;
+                            .px(12px);
+
+                            &:last-child{border: none;}
+
+                            @media(max-width: @lg - 1) { 
+                                width: @sort-list-width;
+                                .mx-auto();
+                            } 
+                        }
+                    }
                 }
             }
             .text-for-gear{

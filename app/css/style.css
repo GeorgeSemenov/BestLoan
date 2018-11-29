@@ -23,7 +23,12 @@
 .centered( @transLeft: -50%; @transTop: -50%; @top: 50%; @left: 50%) - центрует по горизотали и вертикали текст или блок относительно родителя.
 .bordered() - задаёт границу красного цвета.
 .anchornless() - Убирает все стили по умолчанию у ссылки.
+.my(@value: auto)
+.mx(@value: auto)
 .my-auto()
+.mx-auto()
+.px(@value: 10px)
+.py(@value: 10px)
 */
 .textr {
   text-align: right;
@@ -554,6 +559,9 @@ nav.navbar .container ul.navMenu {
 @media (min-width: 992px) {
   nav.navbar .container ul.navMenu {
     margin-top: 10px;
+    -webkit-transition: 0;
+    -o-transition: 0;
+    transition: 0;
   }
   nav.navbar .container ul.navMenu li {
     margin-top: -2px;
@@ -932,6 +940,11 @@ nav.navbar .container ul.navMenu {
     margin-bottom: 10px;
   }
 }
+@media (max-width: 991px) {
+  .sort-screen .search-data-container .sort-tools .lists-of-sort-tools .dropdown .show {
+    position: relative !important;
+  }
+}
 .sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sort-lists {
   position: relative;
 }
@@ -941,6 +954,11 @@ nav.navbar .container ul.navMenu {
     display: -webkit-flex !important;
     display: -ms-flexbox !important;
     display: flex !important;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
         -ms-flex-pack: justify;
@@ -957,6 +975,7 @@ nav.navbar .container ul.navMenu {
   .sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sortirovka {
     display: block !important;
     right: 0;
+    margin-bottom: 10px;
     position: absolute;
     top: 25px;
     -webkit-transform: translateY(-50%);
@@ -967,10 +986,47 @@ nav.navbar .container ul.navMenu {
 @media (max-width: 991px) {
   .sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sort-lists,
   .sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sortirovka {
+    margin-top: auto;
+    margin-bottom: auto;
+    display: none;
+  }
+}
+.sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sort-lists .dropdown-toggle,
+.sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sortirovka .dropdown-toggle {
+  width: 150px;
+}
+@media (max-width: 991px) {
+  .sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sort-lists .dropdown-toggle,
+  .sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sortirovka .dropdown-toggle {
+    position: relative;
+    display: block;
     margin-left: auto;
     margin-right: auto;
+  }
+}
+@media (min-width: 992px) {
+  .sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sort-lists .dropdown-menu,
+  .sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sortirovka .dropdown-menu {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+.sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sort-lists .dropdown-menu .dropdown-item,
+.sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sortirovka .dropdown-menu .dropdown-item {
+  border-bottom: 1px solid #e4e4e4;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+.sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sort-lists .dropdown-menu .dropdown-item:last-child,
+.sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sortirovka .dropdown-menu .dropdown-item:last-child {
+  border: none;
+}
+@media (max-width: 991px) {
+  .sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sort-lists .dropdown-menu .dropdown-item,
+  .sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sortirovka .dropdown-menu .dropdown-item {
     width: 150px;
-    display: none;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 .sort-screen .search-data-container .sort-tools .text-for-gear {

@@ -12,6 +12,8 @@ $(document).ready(function(){
 	$(window).on('resize',function(){
 		isItMobileTime = isItMobileTimeFunc();
 		$('.navbar').stop(true, true).fadeIn();//Эта строка нужна, чтобы если ты смотрел на сайт в мобилковой версии и крутанул вниз, navbar изчез, а затем перешёл в дектоп, то navbar бы появился снова.
+		$('.navMenu').removeClass('show');
+		$('.sandwich').removeClass('clicked');
 	})
 
 	$(window).scroll(function(event){
