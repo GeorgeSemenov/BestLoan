@@ -149,19 +149,52 @@
               %img.w-100(alt="gear" src="img/sortScreen/gear.png")           
         .search-results
           %p.search-results-text Результаты, не соответствующие условиям поиска
-      .companies-list
+      .container.companies-list
         .unit
-          .name-container
-            .exclusive
+          .name-container.my-auto
+            .exclusive 
+              %span эксклюзив
             .logo
               %picture
-                %source(media="(min-width: 1200px)" srcset="alex_credit-1200.png")
-                %source(media="(min-width: 992px)" srcset="alex_credit-992.png")
-                %source(media="(min-width: 768px)" srcset="alex_credit-768.png")
-                %source(media="(min-width: 576px)" srcset="alex_credit-576.png")
-                %source(media="(max-width: 575px)" srcset="alex_credit-576.png")
-                %img.w-100(alt="Alex Credit" src="alex_credit.png")
+                %source(media="(min-width: 1200px)" srcset="img/sortScreen/alex_credit-1200.png")
+                %source(media="(min-width: 992px)" srcset="img/sortScreen/alex_credit-992.png")
+                %source(media="(min-width: 768px)" srcset="img/sortScreen/alex_credit-768.png")
+                %source(media="(min-width: 576px)" srcset="img/sortScreen/alex_credit-576.png")
+                %source(media="(max-width: 575px)" srcset="img/sortScreen/alex_credit-576.png")
+                %img.w-100(alt="Alex Credit" src="img/sortScreen/alex_credit.png")
+            .name
+              %span AlexCredit
           .calculation-contaner
+            .calculations.my-auto.mx-auto
+              .table-row
+                .table-cell
+                  %span.header-text К выплате
+                  %span.amount.green 1080
+                  %span.measure.green грн
+                  %span.equality =
+                .table-cell
+                  %span.header-text Тело кредита
+                  %span.amount 1000
+                  %span.measure грн
+                  %span.plus +
+                .table-cell
+                  %span.header-text Комиссия
+                  %span.amount 80
+                  %span.measure грн
+              .table-row.with-borders
+                .table-cell
+                  %span.header-text 1й кредит
+                  %span.amount 50 - 3000
+                  %span.measure грн
+                .table-cell
+                  %span.header-text Макс. сумма
+                  %span.amount 1000
+                  %span.measure грн
+                .table-cell
+                  %span.header-text Срок
+                  %span.amount 5 - 65
+                  %span.measure дней
           .button-container
+            .button.centered Получить кредит
     %script(src="js/libs.min.js")
     %script(src="js/script.js")

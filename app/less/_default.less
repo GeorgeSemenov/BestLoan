@@ -29,6 +29,7 @@
 .mx-auto()
 .px(@value: 10px)
 .py(@value: 10px)
+.hewi(@height: 30px; @width: 90px)// задаёт ширину и высоту;
 */
 @sm: 576px;
 @md: 768px;
@@ -332,4 +333,11 @@ a.my-anchor{
 .py(@value: 10px){
     padding-top: @value;
     padding-bottom: @value;
+}
+.hewi(@height: 30px; @width: 90px){
+    @px: 0px;
+    @w : @width + @px;
+    @h : @height + @px;
+    height: @h;
+    width: @w;
 }

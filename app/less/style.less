@@ -262,6 +262,7 @@ nav.navbar{
 }
 
 .sort-screen{
+    background-color: #fefefe;
 
     .search-data-container{
         a{.anchornless();}
@@ -483,9 +484,73 @@ nav.navbar{
     }
 
     .companies-list{
-        display: flex;
-        position: relative;
+        .unit{
+            display: flex;
+            position: relative;
+            background-color: #fff;
 
-        
+            @media(min-width: @lg) { height: 195px;}
+
+            .name-container{
+                @name-container-height: 150px;
+                @name-container-width: 230px;
+                @logo-width: 180px;
+                height: @name-container-height;
+                position:relative;
+
+                @media(min-width: @lg) { width: @name-container-width;}
+                @media(max-width: @lg - 1) { width: @logo-width;}//На мобилке ширина name-container будет равна ширине логотипа
+                .exclusive{
+                    height: 24px;
+                    width: 126px;
+                    background-color: #5665cc;
+                    color: #fff;
+                    position: absolute;
+                    border-radius: 7px;
+                    font-size: 17px;
+
+                    span{.centered(@transTop: -55%);}
+
+                }
+                .logo{
+                    width: @logo-width;
+                    .centered();
+                }
+                .name{
+                    .centeredX();
+                    bottom: 0;
+                }
+            }
+            .calculation-container{
+                @calculation-container-width: 475px;
+                width: @calculation-container-width;
+                height: 100%;
+                .calculations{
+                    @calculations-height: 135px;
+                    height: @calculations-height;
+
+                    .table-row{
+                        .table-cell{
+                            @table-cell-width: 140px;
+                            @table-cell-height: 63px;
+                            width: @table-cell-width;
+                            height: @table-cell-height;
+                            position: relative;
+                            display: inline-block;
+                        }
+                    }
+                }
+            }
+
+            .button-container{
+                .button{
+                    .gradient();
+                    color: #fff;
+                    @media(min-width: @lg) { width: 210px;}
+                    @media(max-width: @lg - 1) { width: 120px;}
+                }
+            }
+        }
+
     }
 }

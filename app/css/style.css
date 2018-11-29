@@ -29,6 +29,7 @@
 .mx-auto()
 .px(@value: 10px)
 .py(@value: 10px)
+.hewi(@height: 30px; @width: 90px)// задаёт ширину и высоту;
 */
 .textr {
   text-align: right;
@@ -733,6 +734,9 @@ nav.navbar .container ul.navMenu {
     margin-bottom: 0;
   }
 }
+.sort-screen {
+  background-color: #fefefe;
+}
 .sort-screen .search-data-container {
   font-family: trueno;
   position: relative;
@@ -1093,10 +1097,95 @@ nav.navbar .container ul.navMenu {
       -ms-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
 }
-.sort-screen .companies-list {
+.sort-screen .companies-list .unit {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   position: relative;
+  background-color: #fff;
+}
+@media (min-width: 992px) {
+  .sort-screen .companies-list .unit {
+    height: 195px;
+  }
+}
+.sort-screen .companies-list .unit .name-container {
+  height: 150px;
+  position: relative;
+}
+@media (min-width: 992px) {
+  .sort-screen .companies-list .unit .name-container {
+    width: 230px;
+  }
+}
+@media (max-width: 991px) {
+  .sort-screen .companies-list .unit .name-container {
+    width: 180px;
+  }
+}
+.sort-screen .companies-list .unit .name-container .exclusive {
+  height: 24px;
+  width: 126px;
+  background-color: #5665cc;
+  color: #fff;
+  position: absolute;
+  -webkit-border-radius: 7px;
+          border-radius: 7px;
+  font-size: 17px;
+}
+.sort-screen .companies-list .unit .name-container .exclusive span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -55%);
+      -ms-transform: translate(-50%, -55%);
+          transform: translate(-50%, -55%);
+}
+.sort-screen .companies-list .unit .name-container .logo {
+  width: 180px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.sort-screen .companies-list .unit .name-container .name {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+  bottom: 0;
+}
+.sort-screen .companies-list .unit .calculation-container {
+  width: 475px;
+  height: 100%;
+}
+.sort-screen .companies-list .unit .calculation-container .calculations {
+  height: 135px;
+}
+.sort-screen .companies-list .unit .calculation-container .calculations .table-row .table-cell {
+  width: 140px;
+  height: 63px;
+  position: relative;
+  display: inline-block;
+}
+.sort-screen .companies-list .unit .button-container .button {
+  background: -webkit-gradient(linear, left top, right top, from(#5561a9), to(#73c6f0));
+  background: -webkit-linear-gradient(left, #5561a9, #73c6f0);
+  background: -o-linear-gradient(left, #5561a9, #73c6f0);
+  background: linear-gradient(90deg, #5561a9, #73c6f0);
+  color: #fff;
+}
+@media (min-width: 992px) {
+  .sort-screen .companies-list .unit .button-container .button {
+    width: 210px;
+  }
+}
+@media (max-width: 991px) {
+  .sort-screen .companies-list .unit .button-container .button {
+    width: 120px;
+  }
 }
