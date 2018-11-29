@@ -1093,3 +1093,10 @@ nav.navbar .container ul.navMenu {
       -ms-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
 }
+.sort-screen .companies-list {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+}
