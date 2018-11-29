@@ -975,7 +975,6 @@ nav.navbar .container ul.navMenu {
   .sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sortirovka {
     display: block !important;
     right: 0;
-    margin-bottom: 10px;
     position: absolute;
     top: 25px;
     -webkit-transform: translateY(-50%);
@@ -984,16 +983,20 @@ nav.navbar .container ul.navMenu {
   }
 }
 @media (max-width: 991px) {
+  .sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sortirovka {
+    margin-bottom: 10px;
+  }
+}
+@media (max-width: 991px) {
   .sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sort-lists,
   .sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sortirovka {
-    margin-top: auto;
-    margin-bottom: auto;
     display: none;
   }
 }
 .sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sort-lists .dropdown-toggle,
 .sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sortirovka .dropdown-toggle {
   width: 150px;
+  color: #fff;
 }
 @media (max-width: 991px) {
   .sort-screen .search-data-container .sort-tools .lists-of-sort-tools .sort-lists .dropdown-toggle,
@@ -1030,6 +1033,7 @@ nav.navbar .container ul.navMenu {
   }
 }
 .sort-screen .search-data-container .sort-tools .text-for-gear {
+  color: #fff;
   width: 150px;
   position: absolute;
   top: 25px;
@@ -1078,6 +1082,7 @@ nav.navbar .container ul.navMenu {
   background-color: #fefefe;
   position: relative;
   height: 68px;
+  color: #5e4dcd;
 }
 .sort-screen .search-data-container .search-results .search-results-text {
   position: absolute;

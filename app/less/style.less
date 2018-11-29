@@ -407,19 +407,17 @@ nav.navbar{
                     @media(min-width: @lg) { 
                         display: block !important;
                         right: 0;
-                        margin-bottom: 10px;
                         .centeredY(@top: @sort-tools-height/2);
                     }
+                    @media(max-width: @lg - 1) { margin-bottom: 10px;}
                 }
 
                 .sort-lists , .sortirovka{
-                    @media(max-width: @lg - 1) { 
-                        .my-auto();
-                        display: none;
-                    }
+                    @media(max-width: @lg - 1) { display: none;}
 
                     .dropdown-toggle{
                         width: @sort-list-width;
+                        color: #fff;
 
                         @media(max-width: @lg - 1) {
                             position: relative;
@@ -445,6 +443,7 @@ nav.navbar{
                 }
             }
             .text-for-gear{
+                color: #fff;
                 width: @sort-list-width;
                 .centered(@top: @sort-tools-height/2;)
 
@@ -456,7 +455,6 @@ nav.navbar{
                 .transition(.3; 0; linear);
                  @property-name: dummy-property;//Нужно для работы миксины .transition-property
                 .transition-property(transform);
-                // transform: rotate(0);
             }
             .text-for-gear, .gear, .dropdown a{
                 .unselectable();
@@ -471,6 +469,7 @@ nav.navbar{
             position: relative;
             @search-results-height: 68px;
             height: @search-results-height;
+            color: #5e4dcd;
 
             .search-results-text{
                 .centered();
