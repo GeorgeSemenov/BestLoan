@@ -21,7 +21,7 @@
 .centeredX( @transLeft: -50%; @left: 50% ) - центрует по горизотали текст или блок относительно родителя.
 .centeredY( @transTop: -50%; @top: 50%) - центрует по вертикали текст или блок относительно родителя.
 .centered( @transLeft: -50%; @transTop: -50%; @top: 50%; @left: 50%) - центрует по горизотали и вертикали текст или блок относительно родителя.
-.bordered() - задаёт границу красного цвета.
+.bordered(@border-color: red) - задаёт границу указанного цвета.
 .anchornless() - Убирает все стили по умолчанию у ссылки.
 .my(@value: auto)
 .mx(@value: auto)
@@ -737,6 +737,11 @@ nav.navbar .container ul.navMenu {
 .sort-screen {
   background-color: #fefefe;
 }
+@media (min-width: 992px) {
+  .sort-screen .container {
+    width: 979px;
+  }
+}
 .sort-screen .search-data-container {
   font-family: trueno;
   position: relative;
@@ -1083,7 +1088,6 @@ nav.navbar .container ul.navMenu {
           transform: translateY(-50%) rotate(-180deg);
 }
 .sort-screen .search-data-container .search-results {
-  z-index: -1;
   background-color: #fefefe;
   position: relative;
   height: 68px;
@@ -1116,7 +1120,7 @@ nav.navbar .container ul.navMenu {
 }
 @media (min-width: 992px) {
   .sort-screen .companies-list .unit .name-container {
-    width: 230px;
+    width: 236px;
   }
 }
 @media (max-width: 991px) {
@@ -1160,7 +1164,7 @@ nav.navbar .container ul.navMenu {
   bottom: 0;
 }
 .sort-screen .companies-list .unit .calculation-container {
-  width: 475px;
+  width: 462px;
   height: 100%;
 }
 .sort-screen .companies-list .unit .calculation-container .calculations {
@@ -1168,9 +1172,24 @@ nav.navbar .container ul.navMenu {
 }
 .sort-screen .companies-list .unit .calculation-container .calculations .table-row .table-cell {
   width: 140px;
-  height: 63px;
+  height: 71px;
   position: relative;
   display: inline-block;
+}
+.sort-screen .companies-list .unit .calculation-container .calculations .table-row .table-cell span {
+  position: absolute;
+}
+.sort-screen .companies-list .unit .calculation-container .calculations .table-row .table-cell span.header-text {
+  top: 0px;
+  left: 0px;
+}
+.sort-screen .companies-list .unit .button-container {
+  position: relative;
+}
+@media (min-width: 992px) {
+  .sort-screen .companies-list .unit .button-container {
+    width: 281px;
+  }
 }
 .sort-screen .companies-list .unit .button-container .button {
   background: -webkit-gradient(linear, left top, right top, from(#5561a9), to(#73c6f0));
@@ -1181,7 +1200,7 @@ nav.navbar .container ul.navMenu {
 }
 @media (min-width: 992px) {
   .sort-screen .companies-list .unit .button-container .button {
-    width: 210px;
+    width: 213px;
   }
 }
 @media (max-width: 991px) {

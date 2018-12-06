@@ -264,6 +264,8 @@ nav.navbar{
 .sort-screen{
     background-color: #fefefe;
 
+    .container{@media(min-width: @lg) { width: 979px;}}
+
     .search-data-container{
         a{.anchornless();}
         font-family: trueno;
@@ -470,7 +472,6 @@ nav.navbar{
         }
 
         .search-results{
-            z-index: -1;
             background-color: #fefefe;
             position: relative;
             @search-results-height: 68px;
@@ -493,7 +494,7 @@ nav.navbar{
 
             .name-container{
                 @name-container-height: 150px;
-                @name-container-width: 230px;
+                @name-container-width: 236px;
                 @logo-width: 180px;
                 height: @name-container-height;
                 position:relative;
@@ -522,7 +523,7 @@ nav.navbar{
                 }
             }
             .calculation-container{
-                @calculation-container-width: 475px;
+                @calculation-container-width: 462px;
                 width: @calculation-container-width;
                 height: 100%;
                 .calculations{
@@ -532,25 +533,33 @@ nav.navbar{
                     .table-row{
                         .table-cell{
                             @table-cell-width: 140px;
-                            @table-cell-height: 63px;
+                            @table-cell-height: 71px;
                             width: @table-cell-width;
                             height: @table-cell-height;
                             position: relative;
                             display: inline-block;
+
+                            span{
+                                position: absolute;
+
+                                &.header-text{.tole();}
+
+                            }
                         }
                     }
                 }
             }
 
             .button-container{
+                position: relative;
+                @media(min-width: @lg) { width: 281px;}
                 .button{
                     .gradient();
                     color: #fff;
-                    @media(min-width: @lg) { width: 210px;}
+                    @media(min-width: @lg) { width: 213px;}
                     @media(max-width: @lg - 1) { width: 120px;}
                 }
             }
         }
-
     }
 }

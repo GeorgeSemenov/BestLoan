@@ -21,7 +21,7 @@
 .centeredX( @transLeft: -50%; @left: 50% ) - центрует по горизотали текст или блок относительно родителя.
 .centeredY( @transTop: -50%; @top: 50%) - центрует по вертикали текст или блок относительно родителя.
 .centered( @transLeft: -50%; @transTop: -50%; @top: 50%; @left: 50%) - центрует по горизотали и вертикали текст или блок относительно родителя.
-.bordered() - задаёт границу красного цвета.
+.bordered(@border-color: red) - задаёт границу указанного цвета.
 .anchornless() - Убирает все стили по умолчанию у ссылки.
 .my(@value: auto)
 .mx(@value: auto)
@@ -291,7 +291,7 @@ a.my-anchor{
     transform: translate( @transLeft , @transTop);
 }
 .centered{.centered();}
-.bordered(){border: 2px solid red;}
+.bordered(@border-color: red){border: 2px solid @border-color;}
 .bordered{.bordered();}
 .anchornless(){
     &:link {
@@ -340,4 +340,11 @@ a.my-anchor{
     @h : @height + @px;
     height: @h;
     width: @w;
+}
+.tole(@top: 0; @left: 0){
+    @px: 0px;
+    @t: @px + @top;
+    @l: @px + @left;
+    top: @t;
+    left: @l;
 }
